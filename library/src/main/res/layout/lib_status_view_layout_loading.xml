@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.todddavies.components.progressbar.ProgressWheel
+        android:id="@+id/pw_spinner"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:pwBarColor="#fff"
+        app:pwBarLength="30dp"
+        app:pwBarWidth="2dp"
+        app:pwContourColor="@android:color/transparent"
+        app:pwContourSize="0dp"
+        app:pwRimColor="@color/lib_tv_grey"
+        app:pwRimWidth="2dp"
+        app:pwText="加载中"
+        app:pwTextColor="@color/lib_tv_grey"
+        app:pwTextSize="10sp" />
+</LinearLayout>
