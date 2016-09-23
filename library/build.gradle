@@ -32,6 +32,19 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
 
+
+    //gson解析
+    compile 'com.google.code.gson:gson:2.2.4'
+    //RxAndroid
+    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
     //recycler common adapter
     compile 'me.drakeet.multitype:multitype:2.0.0'
     //换肤库
