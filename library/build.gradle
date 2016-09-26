@@ -32,7 +32,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
 
-
+    //图片加载
+    compile 'com.squareup.picasso:picasso:2.5.2'
     //gson解析
     compile 'com.google.code.gson:gson:2.2.4'
     //RxAndroid
