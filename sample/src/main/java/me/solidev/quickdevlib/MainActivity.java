@@ -1,20 +1,24 @@
 package me.solidev.quickdevlib;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.MultiTypePool;
+import me.solidev.library.adapter.Item;
+import me.solidev.library.adapter.MultiTypeAdapter;
+import me.solidev.library.adapter.MultiTypePool;
+import me.solidev.library.widget.pulltorefresh.PullToRefresh;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+    private PullToRefresh mPtr;
+    private MultiTypeAdapter mAdapter;
+    List<NewsItem> mDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +26,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MultiTypePool.register(NewsItem.class, new NewsItemViewProvider());
 
+        mDatas = new ArrayList<>();
+        mDatas.addAll(getMockData());
 
+        mAdapter = new MultiTypeAdapter(mDatas);
+        mPtr = (PullToRefresh) findViewById(R.id.ptr);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
-        mRecyclerView.setAdapter(new MultiTypeAdapter(getMockData()));
+        mRecyclerView.setAdapter(mAdapter);
+        mPtr.setListener(
+                new PullToRefresh.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        mPtr.onFinishLoading();
+                    }
+
+                    @Override
+                    public void onLoadMore() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        mDatas.addAll(getMockData());
+                        mAdapter.notifyDataSetChanged();
+                        mPtr.onFinishLoading();
+                    }
+                }
+        );
     }
 
     private List<NewsItem> getMockData() {

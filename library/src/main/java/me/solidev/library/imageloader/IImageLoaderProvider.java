@@ -11,5 +11,4 @@ public interface IImageLoaderProvider {
 
     void loadImage(ImageRequest request);
 
-    void loadImage(Context context, ImageRequest request);
 }

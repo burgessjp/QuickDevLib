@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import me.drakeet.multitype.ItemViewProvider;
+import me.solidev.library.adapter.ItemViewProvider;
+
 
 /**
  * Created by _SOLID

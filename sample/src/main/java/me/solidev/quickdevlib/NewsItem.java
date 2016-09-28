@@ -1,7 +1,7 @@
 package me.solidev.quickdevlib;
 
 
-import me.drakeet.multitype.Item;
+import me.solidev.library.adapter.Item;
 
 /**
  * Created by _SOLID

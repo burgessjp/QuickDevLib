@@ -9,6 +9,11 @@ package me.solidev.library.constant;
 
 public class AppConstant {
 
+    //url前缀
+    public static final String URL_RAW = "raw://";
+    public static final String URL_HTTP = "http://";
+    public static final String URL_HTTPS = "https://";
+
     //SettingManager
     public static final String ONLY_WIFI_LOAD_IMG = "OnlyWifiLoadImg";
     public static final String ACCEPT_PUSH = "AcceptPush";

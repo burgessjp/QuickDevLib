@@ -6,7 +6,15 @@
     android:layout_height="match_parent"
     tools:context="me.solidev.quickdevlib.MainActivity">
 
-    <include
-        android:id="@+id/list"
-        layout="@layout/layout_list"></include>
+    <me.solidev.library.widget.pulltorefresh.PullToRefresh
+        android:id="@+id/ptr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/list"
+            layout="@layout/layout_list"></include>
+    </me.solidev.library.widget.pulltorefresh.PullToRefresh>
+
+
 </RelativeLayout>

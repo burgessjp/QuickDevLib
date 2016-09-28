@@ -19,18 +19,6 @@ public class Logger {
     private Logger() {
     }
 
-    /**
-     * 打印info级别的log
-     *
-     * @param msg
-     */
-    public static void i(Object object, String msg) {
-        String tagName = getTagName(object);
-        if (mDebug) {
-            Log.i(tagName, msg);
-        }
-    }
-
     @NonNull
     private static String getTagName(Object object) {
         String tagName = object.getClass().getSimpleName();
@@ -38,22 +26,20 @@ public class Logger {
         return tagName;
     }
 
-    /**
-     * 打印info级别的log
-     *
-     * @param msg
-     */
+    public static void i(Object object, String msg) {
+        String tagName = getTagName(object);
+        if (mDebug) {
+            Log.i(tagName, msg);
+        }
+    }
+
+
     public static void i(String msg) {
         if (mDebug) {
             Log.i("LogInfo", msg);
         }
     }
 
-    /**
-     * 打印error级别的log
-     *
-     * @param msg
-     */
     public static void e(Object object, String msg) {
         String tagName = getTagName(object);
         if (mDebug) {
@@ -61,11 +47,6 @@ public class Logger {
         }
     }
 
-    /**
-     * 打印error级别的log
-     *
-     * @param msg
-     */
     public static void e(String msg) {
         if (mDebug) {
             Log.e("LogError", msg);

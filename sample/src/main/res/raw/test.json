@@ -1,0 +1,30 @@
+{
+	"code" : 0,
+	"message" : "获取直播数据成功",
+
+	"response" : {
+
+		"tv_live" : [
+             {
+             "liveId" : 234293,
+             "title" : "CCTV中央卫视",
+             "image" : "http://pic1.cxtuku.com/00/08/39/b7082aaae72e.jpg",
+             "media" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8",
+            "shareUrl":"",
+            "liveStatus":0
+			}
+		],
+
+		"radio_live" : [
+			{
+				"liveId" : 249794,
+				"freq" : "83.8",
+				"title" : "德行大原",
+				"image" : "http://mas.vtibet.com/mas/image/live.png",
+				"media" : "http://l2.stream.nxtv.com.cn/hls-live/live/_definst_/liveevent/984.m3u8",
+                "shareUrl":"",
+                "liveStatus":0
+			}
+		]
+	}
+}
