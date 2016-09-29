@@ -31,7 +31,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
     private final List<? extends Item> items;
     private LayoutInflater inflater;
-
+    public int offset = 0;
 
     public MultiTypeAdapter(@NonNull List<? extends Item> items) {
         this.items = items;

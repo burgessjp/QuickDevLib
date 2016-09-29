@@ -6,6 +6,8 @@ import android.util.Log;
 
 import java.io.File;
 
+import me.solidev.library.utils.ToastUtil;
+
 /**
  * Created by _SOLID
  * Date:2016/9/26
@@ -23,6 +25,7 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        ToastUtil.initialize(this);
     }
 
     @Override

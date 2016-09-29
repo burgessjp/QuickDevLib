@@ -1,0 +1,334 @@
+{
+  "channels": [
+    {
+      "clickType": 21,
+      "channelId": 24137,
+      "channelTitle": "频道1",
+      "channelIcon": "http://g.nxnews.net/zb/images/P020160825394147559685.png",
+      "channelUrl": ""
+    },
+    {
+      "clickType": 22,
+      "channelId": 24138,
+      "channelTitle": "频道2",
+      "channelIcon": "http://g.nxnews.net/zw/images/P020160825394278758084.png",
+      "channelUrl": ""
+    },
+    {
+      "clickType": 23,
+      "channelId": 24139,
+      "channelTitle": "频道3",
+      "channelIcon": "http://g.nxnews.net/xx/images/P020160825394445080473.png",
+      "channelUrl": ""
+    },
+    {
+      "clickType": 23,
+      "channelId": 24140,
+      "channelTitle": "频道4",
+      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
+      "channelUrl": ""
+    },
+    {
+      "clickType": 23,
+      "channelId": 24140,
+      "channelTitle": "频道5",
+      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
+      "channelUrl": ""
+    },
+    {
+      "clickType": 23,
+      "channelId": 24140,
+      "channelTitle": "频道6",
+      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
+      "channelUrl": ""
+    }
+  ],
+  "datas": [
+    {
+      "channelId": 1233,
+      "docId": 1233,
+      "docType": 1,
+      "clickType": 1,
+      "title": "欧盟在闹“分裂”，习近平和他的伙伴们忙着“上合”",
+      "content": "欧盟在闹“分裂”，习近平和他的伙伴们忙着“上合”",
+      "images": [
+        "http://cbgc.scol.com.cn/headerThree/201606/P020160625345993521010.jpg"
+      ],
+      "source": "人民日报客户端",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/rdxw/201606/t20160625_42909.html",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:31:29"
+    },
+    {
+      "channelId": 12,
+      "docId": 123,
+      "docType": 2,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 3,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 1233,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 1233,
+      "docId": 1233,
+      "docType": 1,
+      "clickType": 1,
+      "title": "欧盟在闹“分裂”，习近平和他的伙伴们忙着“上合”",
+      "content": "欧盟在闹“分裂”，习近平和他的伙伴们忙着“上合”",
+      "images": [
+        "http://cbgc.scol.com.cn/headerThree/201606/P020160625345993521010.jpg"
+      ],
+      "source": "人民日报客户端",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/rdxw/201606/t20160625_42909.html",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:31:29"
+    },
+    {
+      "channelId": 12,
+      "docId": 123,
+      "docType": 2,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 3,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 123,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "庆祝中国共产党成立95周年",
+      "content": "庆祝中国共产党成立95周年",
+      "images": [
+        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+      ],
+      "source": "人民日报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
+      "media": "",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    },
+    {
+      "channelId": 1233,
+      "docId": 123,
+      "docType": 1,
+      "clickType": 1,
+      "title": "亲朋好友八宝山送别吴建民",
+      "content": "亲朋好友八宝山送别吴建民",
+      "images": [
+        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+      ],
+      "source": "北京晨报",
+      "sponsor": {
+        "nickname": "",
+        "avatar": ""
+      },
+      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
+      "plays_num": 1232,
+      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
+      "imagesUrl": [],
+      "date": "2016-06-25 09:41:02"
+    }
+  ]
+}
