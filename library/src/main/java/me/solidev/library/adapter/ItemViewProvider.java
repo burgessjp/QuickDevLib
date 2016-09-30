@@ -17,20 +17,25 @@
 package me.solidev.library.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends Item, V extends ViewHolder> {
+public abstract class ItemViewProvider<C extends Item> {
 
     // @formatter:off
 
     @NonNull
-    protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        View root = inflater.inflate(getItemViewLayoutId(), parent, false);
+        return ViewHolder.createViewHolder(parent.getContext(), root);
+    }
 
-    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c);
+    protected abstract int getItemViewLayoutId();
+
+    protected abstract void onBindViewHolder(@NonNull ViewHolder holder, @NonNull C c);
 }

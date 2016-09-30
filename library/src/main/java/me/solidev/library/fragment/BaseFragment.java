@@ -15,17 +15,17 @@ import android.view.ViewGroup;
  */
 
 public abstract class BaseFragment extends Fragment {
-    private View mContentView;
+    private View mRootView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(setLayoutResourceID(), container, false);//setContentView(inflater, container);
+        mRootView = inflater.inflate(setLayoutResourceID(), container, false);//setContentView(inflater, container);
 
         init();
         setUpView();
         setUpData();
-        return mContentView;
+        return mRootView;
     }
 
     protected abstract int setLayoutResourceID();
@@ -42,10 +42,10 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void setUpData();
 
     protected <T extends View> T $(int id) {
-        return (T) mContentView.findViewById(id);
+        return (T) mRootView.findViewById(id);
     }
 
-    protected View getContentView() {
-        return mContentView;
+    protected View getRootView() {
+        return mRootView;
     }
 }

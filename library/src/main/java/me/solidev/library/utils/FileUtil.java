@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,4 +71,22 @@ public class FileUtil {
         return baos.toByteArray();
     }
     //endregion
+
+    /**
+     * 关闭IO
+     *
+     * @param closeables closeable
+     */
+    public static void closeIO(Closeable... closeables) {
+        if (closeables == null) return;
+        try {
+            for (Closeable closeable : closeables) {
+                if (closeable != null) {
+                    closeable.close();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

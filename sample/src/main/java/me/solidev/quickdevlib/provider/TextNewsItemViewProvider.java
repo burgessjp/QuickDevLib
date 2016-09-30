@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import me.solidev.library.adapter.ItemViewProvider;
+import me.solidev.library.adapter.ViewHolder;
 import me.solidev.quickdevlib.R;
 import me.solidev.quickdevlib.entity.NewsItem;
 
@@ -18,34 +19,19 @@ import me.solidev.quickdevlib.entity.NewsItem;
  * Time:13:11
  */
 
-public class TextNewsItemViewProvider extends ItemViewProvider<NewsItem, TextNewsItemViewProvider.NewsHolder> {
+public class TextNewsItemViewProvider extends ItemViewProvider<NewsItem> {
 
-    @NonNull
+
     @Override
-    protected NewsHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_news_text, parent, false);
-        return new NewsHolder(root);
+    protected int getItemViewLayoutId() {
+        return R.layout.item_news_text;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NewsHolder holder, @NonNull NewsItem item) {
-        holder.tv_title.setText(item.getTitle());
-        holder.tv_content.setText(item.getContent());
-        holder.tv_date.setText(item.getDate());
-    }
-
-    static class NewsHolder extends RecyclerView.ViewHolder {
-
-        private TextView tv_title;
-        private TextView tv_content;
-        private TextView tv_date;
-
-        public NewsHolder(View itemView) {
-            super(itemView);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            tv_content = (TextView) itemView.findViewById(R.id.tv_content);
-            tv_date = (TextView) itemView.findViewById(R.id.tv_date);
-        }
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull NewsItem item) {
+        holder.setText(R.id.tv_title, item.getTitle());
+        holder.setText(R.id.tv_content, item.getContent());
+        holder.setText(R.id.tv_date, item.getDate());
     }
 
 }

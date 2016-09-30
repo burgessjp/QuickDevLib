@@ -1,4 +1,4 @@
-package me.solidev.library.adapter.wrapper;
+package me.solidev.library.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+
 public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private View mConvertView;
@@ -29,7 +30,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         mContext = context;
         mConvertView = itemView;
-        mViews = new SparseArray<View>();
+        mViews = new SparseArray<>();
     }
 
 
@@ -46,12 +47,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
-    /**
-     * 通过viewId获取控件
-     *
-     * @param viewId
-     * @return
-     */
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
@@ -69,16 +64,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return mConvertView;
     }
 
-
-    /****以下为辅助方法*****/
-
-    /**
-     * 设置TextView的值
-     *
-     * @param viewId
-     * @param text
-     * @return
-     */
     public ViewHolder setText(int viewId, String text) {
         TextView tv = getView(viewId);
         tv.setText(text);
@@ -120,7 +105,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         view.setTextColor(textColor);
         return this;
     }
-
     public ViewHolder setTextColorRes(int viewId, int textColorRes) {
         TextView view = getView(viewId);
         view.setTextColor(mContext.getResources().getColor(textColorRes));
@@ -207,7 +191,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ViewHolder setChecked(int viewId, boolean checked) {
-        Checkable view = (Checkable) getView(viewId);
+        Checkable view = getView(viewId);
         view.setChecked(checked);
         return this;
     }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import me.solidev.library.adapter.ItemViewProvider;
+import me.solidev.library.adapter.ViewHolder;
 import me.solidev.library.imageloader.ImageLoader;
 import me.solidev.quickdevlib.R;
 import me.solidev.quickdevlib.entity.NewsItem;
@@ -20,31 +21,17 @@ import me.solidev.quickdevlib.entity.NewsItem;
  * Time:13:11
  */
 
-public class SubjectNewsItemViewProvider extends ItemViewProvider<NewsItem, SubjectNewsItemViewProvider.NewsHolder> {
+public class SubjectNewsItemViewProvider extends ItemViewProvider<NewsItem> {
 
-    @NonNull
     @Override
-    protected NewsHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_news_subject, parent, false);
-        return new NewsHolder(root);
+    protected int getItemViewLayoutId() {
+        return R.layout.item_news_subject;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NewsHolder holder, @NonNull NewsItem item) {
-        holder.tv_title.setText(item.getTitle());
-        ImageLoader.displayImage(holder.iv_img, item.getImages().get(0));
-    }
-
-    static class NewsHolder extends RecyclerView.ViewHolder {
-
-        private TextView tv_title;
-        private ImageView iv_img;
-
-        public NewsHolder(View itemView) {
-            super(itemView);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
-        }
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull NewsItem item) {
+        holder.setText(R.id.tv_title, item.getTitle());
+        ImageLoader.displayImage(holder.getImageView(R.id.iv_img), item.getImages().get(0));
     }
 
 }

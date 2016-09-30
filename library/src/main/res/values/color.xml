@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="lib_tv_grey">#c1c1c1</color>
-    <color name="lib_tv_dark">#353232</color>
+    <color name="bg_grey">#e2e2e2</color>
+
+    <color name="tv_grey">#c1c1c1</color>
+    <color name="tv_dark">#353232</color>
 
 </resources>

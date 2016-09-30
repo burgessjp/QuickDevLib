@@ -3,7 +3,6 @@ package me.solidev.quickdevlib;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +17,14 @@ import me.solidev.quickdevlib.entity.Channel;
  * Created by _SOLID
  * Date:2016/8/25
  * Time:13:18
+ * Desc:频道列表View
  */
-public class ChannelController {
+public class ChannelView {
 
-    private Context context;
     private RecyclerView mRecyclerView;
-    private MultiTypeAdapter mAdapter;
 
 
-    public ChannelController(Context ctx) {
-        context = ctx;
+    public ChannelView(Context ctx) {
         ViewGroup.LayoutParams layoutParams = new GridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mRecyclerView = (RecyclerView) LayoutInflater.from(ctx).inflate(R.layout.layout_list, null);
         mRecyclerView.setLayoutParams(layoutParams);
@@ -36,9 +33,8 @@ public class ChannelController {
     }
 
     public View setChannelList(List<Channel> channelList) {
-        mAdapter = new MultiTypeAdapter(channelList);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setVisibility(mAdapter.getItemCount() <= 0 ? View.GONE : View.VISIBLE);
+        mRecyclerView.setAdapter(new MultiTypeAdapter(channelList));
+        mRecyclerView.setVisibility(channelList.size() <= 0 ? View.GONE : View.VISIBLE);
         return mRecyclerView;
     }
 

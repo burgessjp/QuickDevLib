@@ -12,12 +12,12 @@
         android:layout_height="50dp"
         app:pwBarColor="#fff"
         app:pwBarLength="30dp"
-        app:pwBarWidth="2dp"
+        app:pwBarWidth="3dp"
         app:pwContourColor="@android:color/transparent"
         app:pwContourSize="0dp"
-        app:pwRimColor="@color/lib_tv_grey"
-        app:pwRimWidth="2dp"
+        app:pwRimColor="@color/tv_grey"
+        app:pwRimWidth="3dp"
         app:pwText="加载中"
-        app:pwTextColor="@color/lib_tv_grey"
-        app:pwTextSize="10sp" />
+        app:pwTextColor="@color/tv_grey"
+        app:pwTextSize="8sp" />
 </LinearLayout>

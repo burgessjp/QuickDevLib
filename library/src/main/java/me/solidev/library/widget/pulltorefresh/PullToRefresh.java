@@ -480,7 +480,7 @@ public class PullToRefresh extends ViewGroup {
                     isLoading = false;
                     autoBackToOriginalPosition();
                 }
-            }, 1000);
+            }, 100);
         }
     }
 
