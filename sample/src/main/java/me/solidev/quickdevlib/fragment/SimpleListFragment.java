@@ -1,11 +1,13 @@
 package me.solidev.quickdevlib.fragment;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.quickdevlib.entity.NewsItem;
 
 /**
@@ -40,5 +42,4 @@ public class SimpleListFragment extends AbListFragment<NewsItem> {
         }
         return list;
     }
-
 }

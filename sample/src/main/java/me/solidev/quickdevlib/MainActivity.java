@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import me.solidev.quickdevlib.fragment.HeaderListFragment;
-import me.solidev.quickdevlib.fragment.SimpleListFragment;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -13,7 +13,7 @@ import me.solidev.library.R;
 import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
-import me.solidev.library.ui.recyclerview.RecycleViewDecoration;
+import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.library.ui.widget.StatusViewLayout;
 import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
 
@@ -55,9 +55,10 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         mStatusViewLayout = $(R.id.status_view_layout);
         mPullToRefresh = $(R.id.ptr);
         mRecyclerView = $(R.id.recyclerview);
-        mRecyclerView.setAdapter(mHeaderAndFooterWrapper);
         mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.addItemDecoration(getItemDecoration());
+        mRecyclerView.setAdapter(mHeaderAndFooterWrapper);
+        if (getItemDecoration() != null)
+            mRecyclerView.addItemDecoration(getItemDecoration());
 
         mPullToRefresh.setListener(new PullToRefresh.OnRefreshListener() {
             @Override
@@ -173,7 +174,7 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
     }
 
     @NonNull
-    protected LinearLayoutManager getLayoutManager() {
+    protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(getContext());
     }
 
@@ -183,8 +184,8 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
     }
 
     @NonNull
-    protected RecycleViewDecoration getItemDecoration() {
-        return new RecycleViewDecoration(getContext(), RecyclerView.VERTICAL, 2);
+    protected RecyclerView.ItemDecoration getItemDecoration() {
+        return null;
     }
 
     private View getNoMoreView() {

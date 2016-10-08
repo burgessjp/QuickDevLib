@@ -3,6 +3,7 @@ package me.solidev.quickdevlib.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +15,7 @@ import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.library.ui.fragment.AbListFragment;
 import me.solidev.library.rx.TransformUtils;
+import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.library.utils.FileUtil;
 import me.solidev.library.utils.json.JsonConvert;
 import me.solidev.quickdevlib.ChannelView;
@@ -122,5 +124,11 @@ public class HeaderListFragment extends AbListFragment<NewsItem> {
                 }
             }
         };
+    }
+
+    @NonNull
+    @Override
+    protected RecyclerView.ItemDecoration getItemDecoration() {
+        return new LinearDecoration(getContext(), RecyclerView.VERTICAL);
     }
 }

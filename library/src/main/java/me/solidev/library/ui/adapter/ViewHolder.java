@@ -47,6 +47,10 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
+    public Context getContext() {
+        return mContext;
+    }
+
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
@@ -105,6 +109,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         view.setTextColor(textColor);
         return this;
     }
+
     public ViewHolder setTextColorRes(int viewId, int textColorRes) {
         TextView view = getView(viewId);
         view.setTextColor(mContext.getResources().getColor(textColorRes));
