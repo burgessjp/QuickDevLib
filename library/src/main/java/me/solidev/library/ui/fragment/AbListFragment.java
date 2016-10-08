@@ -1,4 +1,4 @@
-package me.solidev.library.fragment;
+package me.solidev.library.ui.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.R;
-import me.solidev.library.adapter.Item;
-import me.solidev.library.adapter.MultiTypeAdapter;
-import me.solidev.library.adapter.wrapper.HeaderAndFooterWrapper;
-import me.solidev.library.recyclerview.RecycleViewDecoration;
-import me.solidev.library.widget.StatusViewLayout;
-import me.solidev.library.widget.pulltorefresh.PullToRefresh;
+import me.solidev.library.ui.adapter.Item;
+import me.solidev.library.ui.adapter.MultiTypeAdapter;
+import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
+import me.solidev.library.ui.recyclerview.RecycleViewDecoration;
+import me.solidev.library.ui.widget.StatusViewLayout;
+import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
 
 /**
  * Created by _SOLID

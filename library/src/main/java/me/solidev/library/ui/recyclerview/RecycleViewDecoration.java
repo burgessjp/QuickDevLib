@@ -1,4 +1,4 @@
-package me.solidev.library.recyclerview;
+package me.solidev.library.ui.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

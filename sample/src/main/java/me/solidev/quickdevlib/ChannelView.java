@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import me.solidev.library.adapter.MultiTypeAdapter;
+import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.quickdevlib.entity.Channel;
 
 /**

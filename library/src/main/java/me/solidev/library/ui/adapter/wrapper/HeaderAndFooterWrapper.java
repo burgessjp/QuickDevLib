@@ -1,4 +1,4 @@
-package me.solidev.library.adapter.wrapper;
+package me.solidev.library.ui.adapter.wrapper;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import me.solidev.library.adapter.MultiTypeAdapter;
-import me.solidev.library.adapter.ViewHolder;
+import me.solidev.library.ui.adapter.MultiTypeAdapter;
+import me.solidev.library.ui.adapter.ViewHolder;
 
 
 /**

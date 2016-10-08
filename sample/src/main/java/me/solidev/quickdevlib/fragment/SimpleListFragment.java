@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbListFragment;
 import me.solidev.quickdevlib.entity.NewsItem;
 
 /**

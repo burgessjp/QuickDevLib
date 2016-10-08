@@ -10,9 +10,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.adapter.Item;
-import me.solidev.library.adapter.MultiTypeAdapter;
-import me.solidev.library.fragment.AbListFragment;
+import me.solidev.library.ui.adapter.Item;
+import me.solidev.library.ui.adapter.MultiTypeAdapter;
+import me.solidev.library.ui.fragment.AbListFragment;
 import me.solidev.library.rx.TransformUtils;
 import me.solidev.library.utils.FileUtil;
 import me.solidev.library.utils.json.JsonConvert;

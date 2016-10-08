@@ -1,4 +1,4 @@
-package me.solidev.library.widget.pulltorefresh;
+package me.solidev.library.ui.widget.pulltorefresh;
 
 import android.view.LayoutInflater;
 import android.view.View;

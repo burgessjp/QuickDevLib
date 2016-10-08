@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package me.solidev.library.adapter;
-
-import java.util.ArrayList;
-
+package me.solidev.library.ui.adapter;
 
 /**
  * @author drakeet
  */
-public class Items extends ArrayList<Item> {
+public interface Item {
+
 }

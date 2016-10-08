@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package me.solidev.library.adapter;
+package me.solidev.library.ui.adapter;
 
 import android.support.annotation.NonNull;
+
 
 /**
  * @author drakeet
  */
-public interface Savable {
+public interface FlatTypeAdapter {
 
-    void init(@NonNull byte[] data);
-
-    @NonNull byte[] toBytes();
-
-    @NonNull String describe();
+    @NonNull Class onFlattenClass(@NonNull Item item);
+    @NonNull Item onFlattenItem(@NonNull final Item item);
 }

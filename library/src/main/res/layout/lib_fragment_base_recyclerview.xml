@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.solidev.library.widget.StatusViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<me.solidev.library.ui.widget.StatusViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/status_view_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <me.solidev.library.widget.pulltorefresh.PullToRefresh
+    <me.solidev.library.ui.widget.pulltorefresh.PullToRefresh
         android:id="@+id/ptr"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,6 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="LinearLayoutManager" />
-    </me.solidev.library.widget.pulltorefresh.PullToRefresh>
+    </me.solidev.library.ui.widget.pulltorefresh.PullToRefresh>
 
-</me.solidev.library.widget.StatusViewLayout>
+</me.solidev.library.ui.widget.StatusViewLayout>

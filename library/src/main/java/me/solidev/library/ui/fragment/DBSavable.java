@@ -1,6 +1,6 @@
-package me.solidev.library.fragment;
+package me.solidev.library.ui.fragment;
 
-import me.solidev.library.adapter.Item;
+import me.solidev.library.ui.adapter.Item;
 
 /**
  * Created by _SOLID

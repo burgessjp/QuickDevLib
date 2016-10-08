@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package me.solidev.library.adapter;
+package me.solidev.library.ui.adapter;
 
-import android.support.annotation.NonNull;
+import java.util.ArrayList;
 
 
 /**
  * @author drakeet
  */
-public interface FlatTypeAdapter {
-
-    @NonNull Class onFlattenClass(@NonNull Item item);
-    @NonNull Item onFlattenItem(@NonNull final Item item);
+public class Items extends ArrayList<Item> {
 }

@@ -1,4 +1,4 @@
-package me.solidev.library.adapter;
+package me.solidev.library.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

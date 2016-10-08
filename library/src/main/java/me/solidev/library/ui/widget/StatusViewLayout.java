@@ -1,4 +1,4 @@
-package me.solidev.library.widget;
+package me.solidev.library.ui.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

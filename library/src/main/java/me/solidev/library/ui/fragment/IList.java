@@ -1,4 +1,4 @@
-package me.solidev.library.fragment;
+package me.solidev.library.ui.fragment;
 
 /**
  * Created by _SOLID

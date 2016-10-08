@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.solidev.library.adapter;
+package me.solidev.library.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

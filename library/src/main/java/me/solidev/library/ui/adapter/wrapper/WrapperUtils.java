@@ -1,4 +1,4 @@
-package me.solidev.library.adapter.wrapper;
+package me.solidev.library.ui.adapter.wrapper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;

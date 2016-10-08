@@ -1,4 +1,4 @@
-package me.solidev.library.widget.pulltorefresh;
+package me.solidev.library.ui.widget.pulltorefresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;

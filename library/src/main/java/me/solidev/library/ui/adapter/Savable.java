@@ -14,28 +14,18 @@
  * limitations under the License.
  */
 
-package me.solidev.library.adapter;
+package me.solidev.library.ui.adapter;
 
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-
-/***
+/**
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends Item> {
+public interface Savable {
 
-    // @formatter:off
+    void init(@NonNull byte[] data);
 
-    @NonNull
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(getItemViewLayoutId(), parent, false);
-        return ViewHolder.createViewHolder(parent.getContext(), root);
-    }
+    @NonNull byte[] toBytes();
 
-    protected abstract int getItemViewLayoutId();
-
-    protected abstract void onBindViewHolder(@NonNull ViewHolder holder, @NonNull C c);
+    @NonNull String describe();
 }
