@@ -126,9 +126,8 @@ public class HeaderListFragment extends AbListFragment<NewsItem> {
         };
     }
 
-    @NonNull
     @Override
-    protected RecyclerView.ItemDecoration getItemDecoration() {
-        return new LinearDecoration(getContext(), RecyclerView.VERTICAL);
+    protected void addItemDecoration(RecyclerView recyclerView) {
+        recyclerView.addItemDecoration(new LinearDecoration(getContext(), RecyclerView.VERTICAL));
     }
 }

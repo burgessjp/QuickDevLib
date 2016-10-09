@@ -1,13 +1,11 @@
 package me.solidev.quickdevlib.fragment;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.ui.fragment.AbListFragment;
-import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.quickdevlib.entity.NewsItem;
 
 /**
@@ -20,15 +18,15 @@ import me.solidev.quickdevlib.entity.NewsItem;
 public class SimpleListFragment extends AbListFragment<NewsItem> {
     @Override
     public void loadData(int pageIndex) {
-        List<NewsItem> list = getMockData();
 
+        List<NewsItem> list = getMockData();
         onDataSuccessReceived(pageIndex, list);
     }
 
     @NonNull
     private List<NewsItem> getMockData() {
         List<NewsItem> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             NewsItem item = new NewsItem();
             item.setTitle("title:" + i);
             item.setContent("content:" + i);

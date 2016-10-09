@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -23,19 +23,19 @@ import me.solidev.library.utils.ConvertUtils;
 
 public class GridDecoration extends RecyclerView.ItemDecoration {
     private Paint mPaint;
-    private Drawable mDivider;
-    private int mDividerHeight = 1;//分割线高度
+    private int mDividerHeight;
 
     public GridDecoration(Context context) {
         mDividerHeight = ConvertUtils.dp2px(context, 1);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(context.getResources().getColor(R.color.colorAccent));
+        mPaint.setColor(ContextCompat.getColor(context, R.color.tv_grey));
         mPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-        super.getItemOffsets(outRect, itemPosition, parent);
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        int itemPosition = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         int spanCount = getSpanCount(parent);
         int childCount = parent.getAdapter().getItemCount();
         if (parent.getAdapter() instanceof HeaderAndFooterWrapper) {

@@ -3,6 +3,7 @@ package me.solidev.quickdevlib.entity;
 import java.util.List;
 
 import me.solidev.library.ui.adapter.Item;
+import me.solidev.library.ui.recyclerview.ClassTitleItem;
 
 /**
  * Created by _SOLID
@@ -11,7 +12,7 @@ import me.solidev.library.ui.adapter.Item;
  * Desc:
  */
 
-public class NewsItem implements Item {
+public class NewsItem implements ClassTitleItem {
 
     private int channelId;
     private int docId;
@@ -130,6 +131,11 @@ public class NewsItem implements Item {
 
     public void setImagesUrl(List<ImagesUrlBean> imagesUrl) {
         this.imagesUrl = imagesUrl;
+    }
+
+    @Override
+    public String getClassTitle() {
+        return title;
     }
 
     public static class SponsorBean {

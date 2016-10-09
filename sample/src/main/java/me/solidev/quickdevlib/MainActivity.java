@@ -3,7 +3,7 @@ package me.solidev.quickdevlib;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import me.solidev.quickdevlib.fragment.HeaderListFragment;
+import me.solidev.quickdevlib.fragment.ClassTitleListFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,8 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_content, new HeaderListFragment())
+                .replace(R.id.fl_content, new ClassTitleListFragment())
                 .commit();
-
     }
 }

@@ -14,6 +14,7 @@ import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import me.solidev.library.ui.recyclerview.LinearDecoration;
+import me.solidev.library.ui.recyclerview.LoadMoreScrollListener;
 import me.solidev.library.ui.widget.StatusViewLayout;
 import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
 
@@ -34,7 +35,6 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
 
     private int mCurrentPageIndex;
     private List<E> mItems;
-    private boolean mIsHaveMore;
 
 
     @Override
@@ -46,7 +46,6 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
     protected void init() {
         mCurrentPageIndex = getInitPageIndex();
         mItems = new ArrayList<>();
-        mIsHaveMore = true;
         mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(getAdapter());
     }
 
@@ -57,8 +56,7 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         mRecyclerView = $(R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mHeaderAndFooterWrapper);
-        if (getItemDecoration() != null)
-            mRecyclerView.addItemDecoration(getItemDecoration());
+        addItemDecoration(mRecyclerView);
 
         mPullToRefresh.setListener(new PullToRefresh.OnRefreshListener() {
             @Override
@@ -72,24 +70,10 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
             }
         });
 
-        //noinspection deprecation
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-
-
+        mRecyclerView.addOnScrollListener(new LoadMoreScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (mRecyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-                    LinearLayoutManager lm = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                    int visibleItemCount = lm.getChildCount();
-                    int totalItemCount = lm.getItemCount();
-                    int lastVisibleItemPosition = lm.findLastVisibleItemPosition();
-
-                    if (mIsHaveMore && visibleItemCount > 0 && newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition == totalItemCount - 1) {
-                        mPullToRefresh.loadMore();
-                    }
-                }
+            public void loadMore() {
+                mPullToRefresh.loadMore();
             }
         });
         mStatusViewLayout.setOnRetryListener(new View.OnClickListener() {//错误重试
@@ -113,7 +97,6 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
 
     @Override
     public void refreshData() {
-        mIsHaveMore = true;
         mPullToRefresh.setPullUpEnable(true);
         mCurrentPageIndex = getInitPageIndex();
         mHeaderAndFooterWrapper.clearFootView();
@@ -148,7 +131,6 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
                 }
             }, 100);
         } else {//没有更多数据了
-            mIsHaveMore = false;
             mPullToRefresh.setPullUpEnable(false);
             mHeaderAndFooterWrapper.addFootView(getNoMoreView());
             mRecyclerView.scrollToPosition(mHeaderAndFooterWrapper.getItemCount() - 1);
@@ -183,13 +165,8 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         return "无数据";
     }
 
-    @NonNull
-    protected RecyclerView.ItemDecoration getItemDecoration() {
-        return null;
-    }
-
     private View getNoMoreView() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_footer_view, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_footer_view, mStatusViewLayout, false);
         return view;
     }
 
@@ -202,6 +179,14 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         mHeaderAndFooterWrapper.addHeaderView(view);
     }
 
+    /**
+     * 添加分割线
+     *
+     * @param recyclerView
+     */
+    protected void addItemDecoration(RecyclerView recyclerView) {
+
+    }
     //endregion
 
     //region 数据加载状态的处理

@@ -9,6 +9,7 @@ import java.util.List;
 
 import me.solidev.library.ui.fragment.AbListFragment;
 import me.solidev.library.ui.recyclerview.GridDecoration;
+import me.solidev.library.ui.recyclerview.ClassTitleDecoration;
 import me.solidev.quickdevlib.entity.image_type.GridImageItem;
 
 /**
@@ -34,7 +35,7 @@ public class GridListFragment extends AbListFragment<GridImageItem> {
         List<GridImageItem> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             GridImageItem item = new GridImageItem();
-            item.setImageTitle("title" + i );
+            item.setImageTitle("title" + i);
             item.setImageUrl("http://upload-images.jianshu.io/upload_images/323199-42040f8641132827.jpg");
             list.add(item);
         }
@@ -44,12 +45,11 @@ public class GridListFragment extends AbListFragment<GridImageItem> {
     @NonNull
     @Override
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(getContext(),3);
+        return new GridLayoutManager(getContext(), 3);
     }
 
-    @NonNull
     @Override
-    protected RecyclerView.ItemDecoration getItemDecoration() {
-        return new GridDecoration(getContext());
+    protected void addItemDecoration(RecyclerView recyclerView) {
+        recyclerView.addItemDecoration(new GridDecoration(getContext()));
     }
 }
