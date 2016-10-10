@@ -13,10 +13,10 @@ import me.solidev.library.R;
 import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
-import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.library.ui.recyclerview.LoadMoreScrollListener;
 import me.solidev.library.ui.widget.StatusViewLayout;
 import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
+import me.solidev.library.utils.ToastUtil;
 
 /**
  * Created by _SOLID
@@ -25,7 +25,7 @@ import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
  * Desc:列表基类，默认线性布局
  */
 
-public abstract class AbListFragment<E extends Item> extends BaseFragment implements IList {
+public abstract class AbsListFragment<E extends Item> extends BaseFragment implements IList {
 
     private StatusViewLayout mStatusViewLayout;
     private PullToRefresh mPullToRefresh;
@@ -35,29 +35,30 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
 
     private int mCurrentPageIndex;
     private List<E> mItems;
+    private boolean mIsCanPullUp;
 
 
     @Override
-    protected int setLayoutResourceID() {
+    protected final int setLayoutResourceID() {
         return R.layout.lib_fragment_base_recyclerview;
     }
 
     @Override
-    protected void init() {
+    protected final void init() {
+        mIsCanPullUp = true;
         mCurrentPageIndex = getInitPageIndex();
         mItems = new ArrayList<>();
         mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(getAdapter());
     }
 
     @Override
-    protected void setUpView() {
+    protected final void setUpView() {
         mStatusViewLayout = $(R.id.status_view_layout);
         mPullToRefresh = $(R.id.ptr);
         mRecyclerView = $(R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mHeaderAndFooterWrapper);
-        addItemDecoration(mRecyclerView);
-
+        customConfig();
         mPullToRefresh.setListener(new PullToRefresh.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,7 +74,8 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         mRecyclerView.addOnScrollListener(new LoadMoreScrollListener() {
             @Override
             public void loadMore() {
-                mPullToRefresh.loadMore();
+                if (mPullToRefresh.isPullUpEnable())
+                    mPullToRefresh.loadMore();
             }
         });
         mStatusViewLayout.setOnRetryListener(new View.OnClickListener() {//错误重试
@@ -83,30 +85,36 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
                 loadData(getInitPageIndex());
             }
         });
+
+
     }
 
 
     @Override
-    protected void setUpData() {
+    protected final void setUpData() {
         showLoading();
         loadData(getInitPageIndex());//初始加载首页数据
     }
 
-    @Override
-    public abstract void loadData(int pageIndex);
 
     @Override
-    public void refreshData() {
-        mPullToRefresh.setPullUpEnable(true);
+    public final void refreshData() {
+        if (mIsCanPullUp)
+            mPullToRefresh.setPullUpEnable(true);
         mCurrentPageIndex = getInitPageIndex();
         mHeaderAndFooterWrapper.clearFootView();
         loadData(getInitPageIndex());
     }
 
     @Override
-    public void loadMore() {
+    public final void loadMore() {
         loadData(++mCurrentPageIndex);
     }
+
+    @Override
+    public abstract void loadData(int pageIndex);
+
+    //region 可直接调用的方法
 
     /**
      * 列表数据接收成功时调用（相关的实现类需要手动去调用此方法）
@@ -114,7 +122,7 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
      * @param pageIndex 当前请求的页数
      * @param items     返回的数据
      */
-    protected void onDataSuccessReceived(int pageIndex, List<E> items) {
+    protected final void onDataSuccessReceived(int pageIndex, List<E> items) {
         showContent();
         if (pageIndex == getInitPageIndex() && items.size() <= 0) {//无数据
             showEmpty(getEmptyMsg());
@@ -141,11 +149,49 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
     }
 
 
-    protected List<E> getItems() {
+    /**
+     * 得到当前列表数据
+     *
+     * @return 当前列表数据
+     */
+    protected final List<E> getItems() {
         return mItems;
     }
 
+    /**
+     * 添加分隔线
+     *
+     * @param itemDecoration 分隔线
+     */
+    protected final void addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
+        if (mRecyclerView != null)
+            mRecyclerView.addItemDecoration(itemDecoration);
+    }
+
+    /**
+     * 禁掉上拉加载更多
+     */
+    protected final void disEnablePullUp() {
+        mIsCanPullUp = false;
+        mPullToRefresh.setPullUpEnable(false);
+    }
+
+
+    /**
+     * 添加headerView，建议在onDataSuccessReceived方法之前调用
+     *
+     * @param view headView
+     */
+    protected final void addHeaderView(View view) {
+        mHeaderAndFooterWrapper.addHeaderView(view);
+    }
+    //endregion
+
     //region 根据具体的情况可选择性实现下面方法
+
+    protected void customConfig() {
+
+    }
 
     protected int getInitPageIndex() {
         return 1;
@@ -165,34 +211,19 @@ public abstract class AbListFragment<E extends Item> extends BaseFragment implem
         return "无数据";
     }
 
-    private View getNoMoreView() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_footer_view, mStatusViewLayout, false);
-        return view;
-    }
-
-    /**
-     * 添加headerView，建议在onDataSuccessReceived方法之前调用
-     *
-     * @param view headView
-     */
-    protected void addHeaderView(View view) {
-        mHeaderAndFooterWrapper.addHeaderView(view);
-    }
-
-    /**
-     * 添加分割线
-     *
-     * @param recyclerView
-     */
-    protected void addItemDecoration(RecyclerView recyclerView) {
-
+    protected View getNoMoreView() {
+        return LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_footer_view, mStatusViewLayout, false);
     }
     //endregion
 
     //region 数据加载状态的处理
     @Override
     public void showError(Exception e) {
-        mStatusViewLayout.showError(e.getMessage());
+        if (mCurrentPageIndex == getInitPageIndex()) {
+            mStatusViewLayout.showError(e.getMessage());
+        } else {
+            ToastUtil.getInstance().showShortToast(e.getMessage());
+        }
         mPullToRefresh.onFinishLoading();
     }
 

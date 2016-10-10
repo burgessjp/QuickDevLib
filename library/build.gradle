@@ -54,4 +54,6 @@ dependencies {
     //progress
     compile 'com.github.Todd-Davies:ProgressWheel:1.2'
     compile 'com.pnikosis:materialish-progress:1.7'
+    //viewpager切换动画库
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
 }

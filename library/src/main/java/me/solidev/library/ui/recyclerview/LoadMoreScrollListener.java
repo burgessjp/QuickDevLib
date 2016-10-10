@@ -16,7 +16,7 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
     private int totalItemCount;
     private int previousTotal;
     private int visibleItemCount;
-    private int firstVisibleItem;
+    private int lastVisibleItemPosition;
     private boolean isLoading = true;
 
 
@@ -26,7 +26,7 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
         LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
         visibleItemCount = recyclerView.getChildCount();
         totalItemCount = lm.getItemCount();
-        firstVisibleItem = lm.findFirstVisibleItemPosition();
+        lastVisibleItemPosition = lm.findLastVisibleItemPosition();
         if (isLoading) {
             if (totalItemCount > previousTotal) {//加载更多结束
                 isLoading = false;
@@ -37,7 +37,7 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
                 isLoading = false;
             }
         }
-        if (!isLoading && totalItemCount - visibleItemCount <= firstVisibleItem) {
+        if (!isLoading && visibleItemCount > 0 && totalItemCount - 1 == lastVisibleItemPosition) {
             loadMore();
             isLoading = true;
         }

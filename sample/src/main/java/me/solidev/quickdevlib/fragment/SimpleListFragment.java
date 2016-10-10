@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.quickdevlib.entity.NewsItem;
 
 /**
@@ -15,7 +15,7 @@ import me.solidev.quickdevlib.entity.NewsItem;
  * Desc:最简单的一种列表实现
  */
 
-public class SimpleListFragment extends AbListFragment<NewsItem> {
+public class SimpleListFragment extends AbsListFragment<NewsItem> {
     @Override
     public void loadData(int pageIndex) {
 

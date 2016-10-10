@@ -7,9 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.library.ui.recyclerview.GridDecoration;
-import me.solidev.library.ui.recyclerview.ClassTitleDecoration;
 import me.solidev.quickdevlib.entity.image_type.GridImageItem;
 
 /**
@@ -19,7 +18,13 @@ import me.solidev.quickdevlib.entity.image_type.GridImageItem;
  * Desc:网格列表实现
  */
 
-public class GridListFragment extends AbListFragment<GridImageItem> {
+public class GridListFragment extends AbsListFragment<GridImageItem> {
+
+    @Override
+    protected void customConfig() {
+        addItemDecoration(new GridDecoration(getContext()));
+    }
+
     @Override
     public void loadData(int pageIndex) {
         if (pageIndex > 5) {
@@ -48,8 +53,5 @@ public class GridListFragment extends AbListFragment<GridImageItem> {
         return new GridLayoutManager(getContext(), 3);
     }
 
-    @Override
-    protected void addItemDecoration(RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new GridDecoration(getContext()));
-    }
+
 }

@@ -126,6 +126,10 @@ public class HeaderAndFooterWrapper extends RecyclerView.Adapter<RecyclerView.Vi
         mFootViews.put(mFootViews.size() + BASE_ITEM_TYPE_FOOTER, view);
     }
 
+    public View getFootView(int position) {
+        return mFootViews.get(position + BASE_ITEM_TYPE_FOOTER);
+    }
+
     public int getHeadersCount() {
         return mHeaderViews.size();
     }

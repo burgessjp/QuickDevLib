@@ -7,15 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.rx.TransformUtils;
-import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.library.ui.recyclerview.ClassTitleDecoration;
 import me.solidev.library.ui.recyclerview.LinearDecoration;
-import me.solidev.library.utils.FileUtil;
 import me.solidev.quickdevlib.entity.NewsItem;
 import rx.Observable;
 import rx.Subscriber;
-
-import static android.R.id.list;
 
 /**
  * Created by _SOLID
@@ -24,7 +21,15 @@ import static android.R.id.list;
  * Desc:分类列表实现
  */
 
-public class ClassTitleListFragment extends AbListFragment<NewsItem> {
+public class ClassTitleListFragment extends AbsListFragment<NewsItem> {
+
+
+    @Override
+    protected void customConfig() {
+        addItemDecoration(new ClassTitleDecoration(getContext(), getItems()));
+        addItemDecoration(new LinearDecoration(getContext(), RecyclerView.VERTICAL, 1));
+        //disEnablePullUp();
+    }
 
     @Override
     public void loadData(final int pageIndex) {
@@ -58,6 +63,7 @@ public class ClassTitleListFragment extends AbListFragment<NewsItem> {
 
                     @Override
                     public void onNext(List<NewsItem> newsItems) {
+
                         onDataSuccessReceived(pageIndex, getMockData(pageIndex));
                     }
                 });
@@ -84,9 +90,5 @@ public class ClassTitleListFragment extends AbListFragment<NewsItem> {
         return list;
     }
 
-    @Override
-    protected void addItemDecoration(RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new ClassTitleDecoration(getContext(), getItems()));
-        recyclerView.addItemDecoration(new LinearDecoration(getContext(), RecyclerView.VERTICAL, 1));
-    }
+
 }

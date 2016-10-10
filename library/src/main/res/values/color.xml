@@ -9,4 +9,9 @@
     <color name="tv_grey">#c1c1c1</color>
     <color name="tv_dark">#353232</color>
 
+    <color name="orange">#e75946</color>
+    <color name="yellow">#f4d227</color>
+    <color name="blue">#4674e7</color>
+    <color name="green">#0ba62c</color>
+
 </resources>

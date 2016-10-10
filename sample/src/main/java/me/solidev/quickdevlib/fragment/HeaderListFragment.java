@@ -13,9 +13,11 @@ import java.util.List;
 
 import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
-import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.library.rx.TransformUtils;
 import me.solidev.library.ui.recyclerview.LinearDecoration;
+import me.solidev.library.ui.widget.banner.BannerController;
+import me.solidev.library.ui.widget.banner.BannerItem;
 import me.solidev.library.utils.FileUtil;
 import me.solidev.library.utils.json.JsonConvert;
 import me.solidev.quickdevlib.ChannelView;
@@ -34,14 +36,20 @@ import rx.Subscriber;
  * Desc:带有header的例子
  */
 
-public class HeaderListFragment extends AbListFragment<NewsItem> {
+public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
     private ChannelView mChannelController;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mChannelController = new ChannelView(getContext());
+    }
+
+    @Override
+    protected void customConfig() {
+        addItemDecoration(new LinearDecoration(getContext(), RecyclerView.VERTICAL));
     }
 
     @Override
@@ -89,7 +97,7 @@ public class HeaderListFragment extends AbListFragment<NewsItem> {
                             channels = convertChannel.parseData(jsonObject.getString("channels"));
 
 
-                            if (channels != null && channels.size() != 0) {//添加对应的header
+                            if (channels != null && channels.size() != 0) {//添加channel header
                                 addHeaderView(mChannelController.setChannelList(channels));
 
                             }
@@ -100,10 +108,12 @@ public class HeaderListFragment extends AbListFragment<NewsItem> {
                             e.printStackTrace();
                         }
 
+
                     }
                 });
 
     }
+
 
     @Override
     protected MultiTypeAdapter getAdapter() {
@@ -126,8 +136,5 @@ public class HeaderListFragment extends AbListFragment<NewsItem> {
         };
     }
 
-    @Override
-    protected void addItemDecoration(RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new LinearDecoration(getContext(), RecyclerView.VERTICAL));
-    }
+
 }

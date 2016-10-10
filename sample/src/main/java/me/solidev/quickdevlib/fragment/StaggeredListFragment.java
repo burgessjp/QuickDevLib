@@ -7,7 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.AbListFragment;
+import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.quickdevlib.entity.image_type.StaggeredImageItem;
 
 /**
@@ -17,7 +17,7 @@ import me.solidev.quickdevlib.entity.image_type.StaggeredImageItem;
  * Desc:瀑布列表实现
  */
 
-public class StaggeredListFragment extends AbListFragment<StaggeredImageItem> {
+public class StaggeredListFragment extends AbsListFragment<StaggeredImageItem> {
     @Override
     public void loadData(int pageIndex) {
         if (pageIndex > 3) {

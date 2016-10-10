@@ -70,15 +70,16 @@ public class ClassTitleDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
-        if (isDataValid(position)) {
+        if (isDataUnValid(position, parent)) {
             return;
         }
+        position = getAdjustPosition(position, parent);
         if (position > -1) {
-            if (position == 0) {//等于0肯定要有title的
+            if (position == 0) {
                 outRect.set(0, mClassTitleHeight, 0, 0);
             } else {//其他的通过判断
                 if (null != mItems.get(position).getClassTitle() && !mItems.get(position).getClassTitle().equals(mItems.get(position - 1).getClassTitle())) {
-                    outRect.set(0, mClassTitleHeight, 0, 0);//不为空 且跟前一个tag不一样了，说明是新的分类
+                    outRect.set(0, mClassTitleHeight, 0, 0);
                 } else {
                     outRect.set(0, 0, 0, 0);
                 }
@@ -98,9 +99,10 @@ public class ClassTitleDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             int position = params.getViewLayoutPosition();
-            if (isDataValid(position)) {
+            if (isDataUnValid(position, parent)) {
                 return;
             }
+            position = getAdjustPosition(position, parent);
             if (position == 0) {
                 drawTitleArea(c, left, right, child, params, position);
 
@@ -124,10 +126,9 @@ public class ClassTitleDecoration extends RecyclerView.ItemDecoration {
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
         int pos = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
-        if (isDataValid(pos)) {
+        if (isDataUnValid(pos, parent)) {
             return;
         }
-
         String title = mItems.get(pos).getClassTitle();
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
         boolean flag = false;//定义一个flag，Canvas是否位移过的标志
@@ -156,8 +157,12 @@ public class ClassTitleDecoration extends RecyclerView.ItemDecoration {
             c.restore();
     }
 
-    private boolean isDataValid(int position) {
+    protected boolean isDataUnValid(int position, RecyclerView recyclerView) {
         return mItems == null || mItems.isEmpty() || position > mItems.size() - 1;
+    }
+
+    protected int getAdjustPosition(int position, RecyclerView recyclerView) {
+        return position;
     }
 
 }

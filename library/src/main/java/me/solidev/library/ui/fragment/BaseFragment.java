@@ -17,12 +17,16 @@ import android.view.ViewGroup;
 public abstract class BaseFragment extends Fragment {
     private View mRootView;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(setLayoutResourceID(), container, false);//setContentView(inflater, container);
-
-        init();
         setUpView();
         setUpData();
         return mRootView;
