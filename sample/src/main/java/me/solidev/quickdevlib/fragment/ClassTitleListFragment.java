@@ -1,5 +1,6 @@
 package me.solidev.quickdevlib.fragment;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
@@ -34,7 +35,8 @@ public class ClassTitleListFragment extends AbsListFragment<NewsItem> {
     @Override
     public void loadData(final int pageIndex) {
         if (pageIndex > 3) {
-            onDataSuccessReceived(pageIndex, new ArrayList<NewsItem>());
+            onDataSuccessReceived(pageIndex, null);
+
             return;
         }
         Observable

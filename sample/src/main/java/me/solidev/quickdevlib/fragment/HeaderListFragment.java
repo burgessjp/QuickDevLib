@@ -40,11 +40,14 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
     private ChannelView mChannelController;
 
+    private BannerController mBannerController;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mChannelController = new ChannelView(getContext());
+        mBannerController = new BannerController(getContext());
     }
 
     @Override
@@ -98,6 +101,8 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
 
                             if (channels != null && channels.size() != 0) {//添加channel header
+                                mBannerController.setBannerList(getBanners());
+                                addHeaderView(mBannerController.getView());
                                 addHeaderView(mChannelController.setChannelList(channels));
 
                             }
@@ -134,6 +139,25 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
                 }
             }
         };
+    }
+
+    private List<BannerItem> getBanners() {
+        List<BannerItem> items = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            final int n = i;
+            items.add(new BannerItem() {
+                @Override
+                public String getImageUrl() {
+                    return "http://upload-images.jianshu.io/upload_images/1818301-888278c58f0dbe20.jpg";
+                }
+
+                @Override
+                public String getTitle() {
+                    return "title" + n;
+                }
+            });
+        }
+        return items;
     }
 
 

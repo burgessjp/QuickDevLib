@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 //        bannerView.setBannerList(getBannerList());
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_content, new ClassTitleListFragment())
+                .replace(R.id.fl_content, new HeaderListFragment())
                 .commit();
     }
 

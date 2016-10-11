@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.todddavies.components.progressbar.ProgressWheel;
-
 import me.solidev.library.R;
+import me.solidev.library.ui.widget.loading.LVCircularJump;
+import me.solidev.library.ui.widget.loading.LVCircularZoom;
 
 /**
  * Created by _SOLID
@@ -37,7 +37,7 @@ public class StatusViewLayout extends FrameLayout {
     private FrameLayout.LayoutParams mLayoutParams;
     private OnClickListener mOnRetryListener;
 
-    private ProgressWheel mProgressWheel;
+    private LVCircularZoom mLoadingProgressView;
 
 
     public StatusViewLayout(Context context) {
@@ -66,8 +66,7 @@ public class StatusViewLayout extends FrameLayout {
         mLoadingView = LayoutInflater.from(getContext()).inflate(mLoadingViewResId, null);
         mErrorView = LayoutInflater.from(getContext()).inflate(mErrorViewResId, null);
         mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyViewResId, null);
-        mProgressWheel = (ProgressWheel) mLoadingView.findViewById(R.id.pw_spinner);
-
+        mLoadingProgressView = (LVCircularZoom) mLoadingView.findViewById(R.id.lv_loading_view);
 
         lib_tv_empty_msg = (TextView) mEmptyView.findViewById(R.id.lib_tv_empty_msg);
         lib_tv_error = (TextView) mErrorView.findViewById(R.id.lib_tv_error);
@@ -98,7 +97,7 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mLoadingView.setVisibility(View.VISIBLE);
-        mProgressWheel.startSpinning();
+        mLoadingProgressView.startAnim();
 
     }
 
@@ -112,9 +111,7 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mErrorView.setVisibility(View.VISIBLE);
-        if (mProgressWheel.isSpinning()) {
-            mProgressWheel.stopSpinning();
-        }
+        mLoadingProgressView.stopAnim();
     }
 
     public void showEmpty(String msg) {
@@ -127,9 +124,7 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mEmptyView.setVisibility(View.VISIBLE);
-        if (mProgressWheel.isSpinning()) {
-            mProgressWheel.stopSpinning();
-        }
+        mLoadingProgressView.stopAnim();
     }
 
 
@@ -138,9 +133,7 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         getChildAt(getChildCount() - 1).setVisibility(View.VISIBLE);
-        if (mProgressWheel.isSpinning()) {
-            mProgressWheel.stopSpinning();
-        }
+        mLoadingProgressView.stopAnim();
     }
 
 

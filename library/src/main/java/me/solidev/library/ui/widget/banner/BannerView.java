@@ -21,7 +21,7 @@ import me.solidev.library.imageloader.ImageLoader;
  * Created by _SOLID
  * Date:2016/10/10
  * Time:13:46
- * Desc:Banner图
+ * Desc:Banner图集
  */
 
 public class BannerView extends FrameLayout {

@@ -139,6 +139,7 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
                 }
             }, 100);
         } else {//没有更多数据了
+            mCurrentPageIndex--;
             mPullToRefresh.setPullUpEnable(false);
             mHeaderAndFooterWrapper.addFootView(getNoMoreView());
             mRecyclerView.scrollToPosition(mHeaderAndFooterWrapper.getItemCount() - 1);

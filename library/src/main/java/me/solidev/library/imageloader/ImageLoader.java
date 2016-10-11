@@ -11,7 +11,7 @@ public class ImageLoader {
 
     private static volatile IImageLoaderProvider mProvider;
 
-    public static IImageLoaderProvider getProvider() {
+    private static IImageLoaderProvider getProvider() {
         if (mProvider == null) {
             synchronized (ImageLoader.class) {
                 if (mProvider == null) {
