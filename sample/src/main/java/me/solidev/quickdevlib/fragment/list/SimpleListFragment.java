@@ -1,4 +1,4 @@
-package me.solidev.quickdevlib.fragment;
+package me.solidev.quickdevlib.fragment.list;
 
 import android.support.annotation.NonNull;
 

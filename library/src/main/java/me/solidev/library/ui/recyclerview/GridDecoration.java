@@ -68,8 +68,8 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childSize; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
-            int left = parent.getPaddingLeft() + child.getPaddingLeft();
-            int right = parent.getMeasuredWidth() - parent.getPaddingRight() - child.getPaddingRight();
+            int left = parent.getPaddingLeft();
+            int right = parent.getMeasuredWidth() - parent.getPaddingRight();
             int top = child.getBottom() + layoutParams.bottomMargin;
             int bottom = top + mDividerHeight;
             if (mPaint != null) {
