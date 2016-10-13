@@ -1,35 +1,27 @@
 package me.solidev.library.ui.widget.gridpager;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.R;
 import me.solidev.library.imageloader.ImageLoader;
-import me.solidev.library.ui.recyclerview.GridDecoration;
+import me.solidev.library.ui.widget.indicator.CircleIndicator;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * Created by _SOLID
@@ -43,6 +35,9 @@ public class GridPagerView extends FrameLayout {
     private int mColumns = 4;
     private List<? extends GridPagerItem> mItems;
     private int mPageSize;
+    private ViewPager mViewPager;
+    private CircleIndicator mIndicator;
+    private int mCurrentPage;
 
     public GridPagerView(Context context) {
         this(context, null);
@@ -57,8 +52,27 @@ public class GridPagerView extends FrameLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_grid_pager_view, this);
         mItems = new ArrayList<>();
         mPageSize = mRows * mColumns;
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mIndicator = (CircleIndicator) findViewById(R.id.indicator);
         mViewPager.setAdapter(mPageAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
     public void setItems(List<? extends GridPagerItem> items) {
@@ -67,6 +81,7 @@ public class GridPagerView extends FrameLayout {
         }
         mItems = items;
         mPageAdapter.notifyDataSetChanged();
+        mIndicator.setViewPager(mViewPager);
     }
 
     public void setRows(int rows) {
@@ -79,7 +94,33 @@ public class GridPagerView extends FrameLayout {
         mPageSize = mRows * mColumns;
     }
 
+    //region indicator settings
+    public void setIndicatorRadius(float mIndicatorRadius) {
+        mIndicator.setIndicatorRadius(mIndicatorRadius);
+    }
 
+    public void setIndicatorMargin(float mIndicatorMargin) {
+        mIndicator.setIndicatorMargin(mIndicatorMargin);
+    }
+
+    public void setIndicatorBackground(int mIndicatorBackground) {
+        mIndicator.setIndicatorBackground(mIndicatorBackground);
+    }
+
+    public void setIndicatorSelectedBackground(int mIndicatorSelectedBackground) {
+        mIndicator.setIndicatorSelectedBackground(mIndicatorSelectedBackground);
+    }
+
+    public void setIndicatorLayoutGravity(CircleIndicator.Gravity mIndicatorLayoutGravity) {
+        mIndicator.setIndicatorLayoutGravity(mIndicatorLayoutGravity);
+    }
+
+    public void setIndicatorMode(CircleIndicator.Mode mIndicatorMode) {
+        mIndicator.setIndicatorMode(mIndicatorMode);
+    }
+    //endregion
+
+    //region PagerAdapter and ItemAdapter
     private PagerAdapter mPageAdapter = new PagerAdapter() {
         @Override
         public int getCount() {
@@ -101,8 +142,7 @@ public class GridPagerView extends FrameLayout {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), mColumns);
             gridLayoutManager.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(gridLayoutManager);
-            recyclerView.addItemDecoration(new GridDecoration(getContext()));
-            recyclerView.setBackgroundColor(Color.GRAY);
+            //recyclerView.addItemDecoration(new GridDecoration(getContext()));
             recyclerView.setAdapter(new ItemAdapter(items));
 
             container.addView(recyclerView, new ViewGroup.LayoutParams(MATCH_PARENT, 200));
@@ -139,9 +179,17 @@ public class GridPagerView extends FrameLayout {
         }
 
         @Override
-        public void onBindViewHolder(ItemHolder holder, int position) {
+        public void onBindViewHolder(ItemHolder holder, final int position) {
             holder.tv_title.setText(items.get(position).getTitle());
             ImageLoader.displayImage(holder.iv_icon, items.get(position).getImageUrl());
+            holder.itemView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(items.get(position), mCurrentPage * mPageSize + position);
+                    }
+                }
+            });
         }
 
         @Override
@@ -160,4 +208,17 @@ public class GridPagerView extends FrameLayout {
             }
         }
     }
+    //endregion
+
+    //region 设置 Item 点击监听
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    public interface OnItemClickListener<T extends GridPagerItem> {
+        void onItemClick(T item, int position);
+    }
+    //endregion
 }

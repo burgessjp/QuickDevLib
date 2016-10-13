@@ -1,7 +1,5 @@
 package me.solidev.library.rx.retrofit.factory;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.rxbinding.internal.Preconditions;
@@ -12,6 +10,7 @@ import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
 import me.solidev.library.BaseApp;
+import me.solidev.library.utils.Logger;
 import me.solidev.library.utils.NetworkUtil;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
@@ -86,12 +85,12 @@ public class ServiceFactory {
         File httpCacheDirectory = new File(BaseApp.getInstance().getCacheDir(), "OkHttpCache");
         httpClientBuilder.cache(new Cache(httpCacheDirectory, 10 * 1024 * 1024));
         //设置拦截器
-        httpClientBuilder.addNetworkInterceptor(new LogInterceptor());
-        httpClientBuilder.addInterceptor(new CacheControlInterceptor());
+        httpClientBuilder.addInterceptor(new LoggingInterceptor());
+        httpClientBuilder.addNetworkInterceptor(new CacheControlInterceptor());
         return httpClientBuilder.build();
     }
 
-    private class CacheControlInterceptor implements Interceptor {
+    class CacheControlInterceptor implements Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
@@ -120,39 +119,7 @@ public class ServiceFactory {
         }
     }
 
-    private class LogInterceptor implements Interceptor {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-
-            long t1 = System.nanoTime();
-            Log.v("HttpService", String.format("Sending request %s on %s%n%s",
-                    request.url(), chain.connection(), request.headers()));
-
-            Response response = chain.proceed(request);
-            long t2 = System.nanoTime();
-
-            Log.v("HttpService", String.format("Received response for %s in %.1fms%n%s",
-                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-            return response;
-
-            // 打印Response Body
-//            if(BuildConfig.DEBUG) {
-//                String responseBody = response.body().string();
-//                Log.v("HttpService", String.format("Received response for %s in %.1fms%n%s%n%s",
-//                        response.request().url(), (t2 - t1) / 1e6d, response.headers(), responseBody));
-//                return response.newBuilder()
-//                        .body(ResponseBody.create(response.body().contentType(), responseBody))
-//                        .build();
-//            } else {
-//                Log.v("HttpService", String.format("Received response for %s in %.1fms%n%s",
-//                        response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-//                return response;
-//            }
-        }
-    }
-
-    public final class UserAgentInterceptor implements Interceptor {
+    class UserAgentInterceptor implements Interceptor {
         private static final String USER_AGENT_HEADER_NAME = "User-Agent";
         private final String userAgentHeaderValue;
 
@@ -168,6 +135,25 @@ public class ServiceFactory {
                     .addHeader(USER_AGENT_HEADER_NAME, userAgentHeaderValue)
                     .build();
             return chain.proceed(requestWithUserAgent);
+        }
+    }
+
+    class LoggingInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Interceptor.Chain chain) throws IOException {
+            Request request = chain.request();
+
+            long t1 = System.nanoTime();
+            Logger.i(String.format("Sending request %s on %s%n%s",
+                    request.url(), chain.connection(), request.headers()));
+
+            Response response = chain.proceed(request);
+
+            long t2 = System.nanoTime();
+            Logger.i(String.format("Received response for %s in %.1fms%n%s",
+                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
+
+            return response;
         }
     }
 

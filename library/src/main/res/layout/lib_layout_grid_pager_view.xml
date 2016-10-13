@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_red_dark">
+    android:orientation="vertical">
 
     <me.solidev.library.ui.widget.WrapContentViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</RelativeLayout>
+
+    <me.solidev.library.ui.widget.indicator.CircleIndicator xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_centerVertical="true"
+        app:ci_background="@android:color/darker_gray"
+        app:ci_gravity="center"
+        app:ci_margin="4dp"
+        app:ci_mode="outside"
+        app:ci_radius="4dp"
+        app:ci_selected_background="#f980ef" />
+</LinearLayout>

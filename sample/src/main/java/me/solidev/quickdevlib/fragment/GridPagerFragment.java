@@ -1,11 +1,14 @@
 package me.solidev.quickdevlib.fragment;
 
+import android.support.v4.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.ui.fragment.BaseFragment;
 import me.solidev.library.ui.widget.gridpager.GridPagerItem;
 import me.solidev.library.ui.widget.gridpager.GridPagerView;
+import me.solidev.library.utils.ToastUtil;
 import me.solidev.quickdevlib.R;
 
 /**
@@ -27,8 +30,15 @@ public class GridPagerFragment extends BaseFragment {
     @Override
     protected void setUpView() {
         mGridPagerView = $(R.id.gridPager);
-        mGridPagerView.setRows(3);
-        mGridPagerView.setColumns(3);
+        mGridPagerView.setIndicatorSelectedBackground(ContextCompat.getColor(getContext(), R.color.orange));
+        mGridPagerView.setRows(2);
+        mGridPagerView.setColumns(4);
+        mGridPagerView.setOnItemClickListener(new GridPagerView.OnItemClickListener<GridItemExample>() {
+            @Override
+            public void onItemClick(GridItemExample item, int position) {
+                ToastUtil.getInstance().showShortToast("Item Click:" + position + "|type:" + item.type);
+            }
+        });
     }
 
     @Override
@@ -37,23 +47,32 @@ public class GridPagerFragment extends BaseFragment {
     }
 
 
-
     public List<GridPagerItem> getItems() {
         List<GridPagerItem> items = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             final int n = i;
-            items.add(new GridPagerItem() {
-                @Override
-                public String getImageUrl() {
-                    return "http://g.nxnews.net/zw/images/P020160825394278758084.png";
-                }
-
-                @Override
-                public String getTitle() {
-                    return "title" + n;
-                }
-            });
+            GridItemExample item = new GridItemExample();
+            item.imageUrl = "http://g.nxnews.net/xx/24181/images/P020160825622352690911.png";
+            item.title = "校园";
+            item.type = "type" + i;
+            items.add(item);
         }
         return items;
+    }
+
+    class GridItemExample implements GridPagerItem {
+        public String imageUrl;
+        public String title;
+        public String type;
+
+        @Override
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        @Override
+        public String getTitle() {
+            return title;
+        }
     }
 }
