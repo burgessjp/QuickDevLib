@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 数据库Entity Class -->
+    <string-array name="db_tb">
+        <item>me.solidev.quickdevlib.fragment.subscribe.MyChannel</item>
+    </string-array>
+</resources>

@@ -26,4 +26,6 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile project(':library')
+    compile files('libs/ormlite-android-4.49.jar')
+    compile files('libs/ormlite-core-4.49.jar')
 }
