@@ -63,13 +63,12 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
 
     //绘制横向 item 分割线
     private void drawHorizontal(Canvas canvas, RecyclerView parent) {
-
         int childSize = parent.getChildCount();
         for (int i = 0; i < childSize; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
-            int left = parent.getPaddingLeft();
-            int right = parent.getMeasuredWidth() - parent.getPaddingRight();
+            int left = child.getLeft();
+            int right = child.getRight();
             int top = child.getBottom() + layoutParams.bottomMargin;
             int bottom = top + mDividerHeight;
             if (mPaint != null) {
@@ -80,14 +79,14 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
 
     //绘制纵向 item 分割线
     private void drawVertical(Canvas canvas, RecyclerView parent) {
-        final int top = parent.getPaddingTop();
-        final int bottom = parent.getMeasuredHeight() - parent.getPaddingBottom();
         final int childSize = parent.getChildCount();
         for (int i = 0; i < childSize; i++) {
-            final View child = parent.getChildAt(i);
+            View child = parent.getChildAt(i);
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
-            final int left = child.getRight() + layoutParams.rightMargin;
-            final int right = left + mDividerHeight;
+            int top = child.getTop();
+            int bottom = child.getBottom()+mDividerHeight;
+            int left = child.getRight() + layoutParams.rightMargin;
+            int right = left + mDividerHeight;
             if (mPaint != null) {
                 canvas.drawRect(left, top, right, bottom, mPaint);
             }

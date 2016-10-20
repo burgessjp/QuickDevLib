@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.solidev.library.rx.TransformUtils;
 import me.solidev.library.ui.fragment.AbsListFragment;
 import me.solidev.library.ui.recyclerview.GridDecoration;
 import me.solidev.quickdevlib.entity.image_type.GridImageItem;
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by _SOLID
@@ -26,13 +29,41 @@ public class GridListFragment extends AbsListFragment<GridImageItem> {
     }
 
     @Override
-    public void loadData(int pageIndex) {
+    public void loadData(final int pageIndex) {
         if (pageIndex > 5) {
             onDataSuccessReceived(pageIndex, new ArrayList<GridImageItem>());
             return;
         }
-        List<GridImageItem> list = getMockData();
-        onDataSuccessReceived(pageIndex, list);
+        Observable
+                .create(new Observable.OnSubscribe<List<GridImageItem>>() {
+                    @Override
+                    public void call(Subscriber<? super List<GridImageItem>> subscriber) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        subscriber.onNext(getMockData());
+                    }
+                })
+                .compose(TransformUtils.<List<GridImageItem>>defaultSchedulers())
+                .subscribe(new Subscriber<List<GridImageItem>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<GridImageItem> gridImageItems) {
+                        onDataSuccessReceived(pageIndex, gridImageItems);
+                    }
+                });
+
     }
 
     @NonNull

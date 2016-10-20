@@ -13,7 +13,7 @@ import me.solidev.library.R;
 import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
 import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
-import me.solidev.library.ui.recyclerview.LoadMoreScrollListener;
+import me.solidev.library.ui.adapter.wrapper.LoadMoreWrapper;
 import me.solidev.library.ui.widget.StatusViewLayout;
 import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
 import me.solidev.library.utils.ToastUtil;
@@ -32,10 +32,10 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
     private RecyclerView mRecyclerView;
 
     private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
-
+    private LoadMoreWrapper mLoadMoreWrapper;
     private int mCurrentPageIndex;
     private List<E> mItems;
-    private boolean mIsCanPullUp;
+    private boolean mIsCanPullUp = false;
 
 
     @Override
@@ -45,19 +45,32 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
 
     @Override
     protected final void init() {
-        mIsCanPullUp = true;
         mCurrentPageIndex = getInitPageIndex();
         mItems = new ArrayList<>();
         mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(getAdapter());
+        mLoadMoreWrapper = new LoadMoreWrapper(getContext(), mHeaderAndFooterWrapper);
+        mLoadMoreWrapper.setOnLoadListener(new LoadMoreWrapper.OnLoadListener() {
+            @Override
+            public void onRetry() {
+                loadData(mCurrentPageIndex);
+            }
+
+            @Override
+            public void onLoadMore() {
+                AbsListFragment.this.loadMore();
+            }
+        });
     }
 
     @Override
     protected final void setUpView() {
         mStatusViewLayout = $(R.id.status_view_layout);
         mPullToRefresh = $(R.id.ptr);
+        mPullToRefresh.setPullUpEnable(false);
+        disEnablePullUp();
         mRecyclerView = $(R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.setAdapter(mHeaderAndFooterWrapper);
+        mRecyclerView.setAdapter(mLoadMoreWrapper);
         customConfig();
         mPullToRefresh.setListener(new PullToRefresh.OnRefreshListener() {
             @Override
@@ -71,13 +84,6 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
             }
         });
 
-        mRecyclerView.addOnScrollListener(new LoadMoreScrollListener() {
-            @Override
-            public void loadMore() {
-                if (mPullToRefresh.isPullUpEnable())
-                    mPullToRefresh.loadMore();
-            }
-        });
         mStatusViewLayout.setOnRetryListener(new View.OnClickListener() {//错误重试
             @Override
             public void onClick(View v) {
@@ -99,10 +105,8 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
 
     @Override
     public final void refreshData() {
-        if (mIsCanPullUp)
-            mPullToRefresh.setPullUpEnable(true);
         mCurrentPageIndex = getInitPageIndex();
-        mHeaderAndFooterWrapper.clearFootView();
+        mLoadMoreWrapper.showLoadMore();
         loadData(getInitPageIndex());
     }
 
@@ -129,23 +133,15 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
         } else if (pageIndex == getInitPageIndex()) {//刷新
             mItems.clear();
             mItems.addAll(items);
-
         } else if (items != null && items.size() != 0) {//加载更多
             mItems.addAll(items);
-            mRecyclerView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mRecyclerView.scrollBy(0, 100);
-                }
-            }, 100);
         } else {//没有更多数据了
             mCurrentPageIndex--;
             mPullToRefresh.setPullUpEnable(false);
-            mHeaderAndFooterWrapper.addFootView(getNoMoreView());
-            mRecyclerView.scrollToPosition(mHeaderAndFooterWrapper.getItemCount() - 1);
+            mLoadMoreWrapper.showLoadComplete();
         }
 
-        mHeaderAndFooterWrapper.notifyDataSetChanged();
+        mLoadMoreWrapper.notifyDataSetChanged();
 
     }
 
@@ -223,6 +219,7 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
         if (mCurrentPageIndex == getInitPageIndex()) {
             mStatusViewLayout.showError(e.getMessage());
         } else {
+            mLoadMoreWrapper.showLoadError();
             ToastUtil.getInstance().showShortToast(e.getMessage());
         }
         mPullToRefresh.onFinishLoading();

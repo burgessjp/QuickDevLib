@@ -3,6 +3,8 @@ package me.solidev.quickdevlib;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import me.solidev.quickdevlib.fragment.list.GridListFragment;
+import me.solidev.quickdevlib.fragment.list.HeaderListFragment;
 import me.solidev.quickdevlib.fragment.subscribe.SubscribeFragment;
 
 
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 //        bannerView.setBannerList(getBannerList());
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_content, new SubscribeFragment())
+                .replace(R.id.fl_content, new GridListFragment())
                 .commit();
     }
 

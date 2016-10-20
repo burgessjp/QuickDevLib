@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.adapter.MultiTypeAdapter;
@@ -88,6 +89,9 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
                     @Override
                     public void onNext(String newsString) {
+                        Random r = new Random();
+                        if (pageIndex == r.nextInt(4))
+                            newsString = "1";
                         List<NewsItem> items;
                         List<Channel> channels;
                         try {
@@ -110,7 +114,7 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
 
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            onError(e);
                         }
 
 

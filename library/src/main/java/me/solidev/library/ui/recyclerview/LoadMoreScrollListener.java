@@ -13,39 +13,33 @@ import android.support.v7.widget.RecyclerView;
 public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListener {
 
 
-    private int totalItemCount;
     private int previousTotal;
-    private int visibleItemCount;
-    private int lastVisibleItemPosition;
     private boolean isLoading = true;
-
-
-    @Override
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-        super.onScrolled(recyclerView, dx, dy);
-        LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
-        visibleItemCount = recyclerView.getChildCount();
-        totalItemCount = lm.getItemCount();
-        lastVisibleItemPosition = lm.findLastVisibleItemPosition();
-        if (isLoading) {
-            if (totalItemCount > previousTotal) {//加载更多结束
-                isLoading = false;
-                previousTotal = totalItemCount;
-            }
-            if (totalItemCount < previousTotal) {//用户刷新结束
-                previousTotal = totalItemCount;
-                isLoading = false;
-            }
-        }
-        if (!isLoading && visibleItemCount > 0 && totalItemCount - 1 == lastVisibleItemPosition) {
-            loadMore();
-            isLoading = true;
-        }
-    }
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
+        LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
+        int visibleItemCount = recyclerView.getChildCount();
+        int totalItemCount = lm.getItemCount();
+        int lastVisibleItemPosition = lm.findLastVisibleItemPosition();
+
+        if (isLoading) {
+            if (totalItemCount > previousTotal) {//加载更多结束
+                isLoading = false;
+                previousTotal = totalItemCount;
+            } else if (totalItemCount < previousTotal) {//用户刷新结束
+                previousTotal = totalItemCount;
+                isLoading = false;
+            } else {//有可能是在第一页刷新也可能是加载完毕
+
+            }
+
+
+        }
+        if (!isLoading && visibleItemCount > 0 && totalItemCount - 1 == lastVisibleItemPosition && recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+            loadMore();
+        }
 
     }
 
