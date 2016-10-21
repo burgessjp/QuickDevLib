@@ -9,7 +9,7 @@ Completed Part
 
 capture:
 
- <img src="capture/headlist.png" width = "20%" />
- <img src="capture/classifytitle.png" width = "20%" />
- <img src="capture/grid_pager.png" width = "20%" />
- <img src="capture/subscribe.png" width = "20%" />
+ <img src="capture/headlist.png" width = "40%" />
+ <img src="capture/classifytitle.png" width = "40%" />
+ <img src="capture/grid_pager.png" width = "40%" />
+ <img src="capture/subscribe.png" width = "40%" />
