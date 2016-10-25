@@ -1,11 +1,11 @@
-# QuickDevLib
-QuickDevLib for Android
+###QuickDevLib for Android(building)
+*You can fastest to complete a list display.*
 
 Completed Part
 
 1. common fragment list(include load state processing,classify title,add head and footer)
-   - Only implements loadData method  can be complete a simple list
-   - Also you can through specific needs to custom your list(there are some alternative methods)
+   - Just implements loadData method,a simple list can be completed.
+   - Also you can through specific needs to custom your complex list(there are some alternative methods)
 2. Subscribe
    - Need you implements data local storage
 3. GridPager
