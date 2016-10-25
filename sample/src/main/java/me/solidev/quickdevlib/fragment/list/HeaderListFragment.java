@@ -104,7 +104,7 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
                             channels = convertChannel.parseData(jsonObject.getString("channels"));
 
 
-                            if (channels != null && channels.size() != 0) {//添加channel header
+                            if (pageIndex==getInitPageIndex()&&channels != null && channels.size() != 0) {//添加channel header
                                 mBannerController.setBannerList(getBanners());
                                 addHeaderView(mBannerController.getView());
                                 addHeaderView(mChannelController.setChannelList(channels));

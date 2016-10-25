@@ -30,6 +30,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int ITEM_TYPE_LOAD_FAILED_VIEW = Integer.MAX_VALUE - 1;
     public static final int ITEM_TYPE_NO_MORE_VIEW = Integer.MAX_VALUE - 2;
     public static final int ITEM_TYPE_LOAD_MORE_VIEW = Integer.MAX_VALUE - 3;
+    public static final int ITEM_TYPE_NO_VIEW = Integer.MAX_VALUE - 4;//不展示footer view
 
     private Context mContext;
     private RecyclerView.Adapter mInnerAdapter;
@@ -43,6 +44,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private boolean isLoadError = false;//标记是否加载出错
+    private boolean isHaveStatesView = true;
 
     public LoadMoreWrapper(Context context, RecyclerView.Adapter adapter) {
         this.mContext = context;
@@ -50,7 +52,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mLoadMoreScrollListener = new LoadMoreScrollListener() {
             @Override
             public void loadMore() {
-                if (mOnLoadListener != null) {
+                if (mOnLoadListener != null && isHaveStatesView) {
                     if (!isLoadError) {
                         showLoadMore();
                         mOnLoadListener.onLoadMore();
@@ -63,19 +65,28 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void showLoadMore() {
         mCurrentItemType = ITEM_TYPE_LOAD_MORE_VIEW;
         isLoadError = false;
+        isHaveStatesView = true;
         notifyItemChanged(getItemCount());
     }
 
     public void showLoadError() {
         mCurrentItemType = ITEM_TYPE_LOAD_FAILED_VIEW;
         isLoadError = true;
+        isHaveStatesView = true;
         notifyItemChanged(getItemCount());
     }
 
     public void showLoadComplete() {
         mCurrentItemType = ITEM_TYPE_NO_MORE_VIEW;
         isLoadError = false;
+        isHaveStatesView = true;
         notifyItemChanged(getItemCount());
+    }
+
+    public void disableLoadMore() {
+        mCurrentItemType = ITEM_TYPE_NO_VIEW;
+        isHaveStatesView = false;
+        notifyDataSetChanged();
     }
 
     //region Get ViewHolder
@@ -115,7 +126,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) {
+        if (position == getItemCount() - 1 && isHaveStatesView) {
             return mCurrentItemType;
         }
         return mInnerAdapter.getItemViewType(position);
@@ -155,10 +166,10 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
         WrapperUtils.onAttachedToRecyclerView(mInnerAdapter, recyclerView, new WrapperUtils.SpanSizeCallback() {
             @Override
             public int getSpanSize(GridLayoutManager layoutManager, GridLayoutManager.SpanSizeLookup oldLookup, int position) {
-                if (position == getItemCount() - 1) {
+                if (position == getItemCount() - 1 && isHaveStatesView) {
                     return layoutManager.getSpanCount();
                 }
-                if (oldLookup != null) {
+                if (oldLookup != null && isHaveStatesView) {
                     return oldLookup.getSpanSize(position);
                 }
                 return 1;
@@ -172,27 +183,22 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
         mInnerAdapter.onViewAttachedToWindow(holder);
 
-        if (holder.getLayoutPosition() == getItemCount() - 1) {
-            setFullSpan(holder);
-        }
-    }
+        if (holder.getLayoutPosition() == getItemCount() - 1 && isHaveStatesView) {
+            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
 
-    private void setFullSpan(RecyclerView.ViewHolder holder) {
-        ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+            if (lp != null
+                    && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
 
-        if (lp != null
-                && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
-            StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
-
-            p.setFullSpan(true);
+                p.setFullSpan(true);
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return mInnerAdapter.getItemCount() + 1;
+        return mInnerAdapter.getItemCount() + (isHaveStatesView ? 1 : 0);
     }
-
 
     //region 加载监听
 

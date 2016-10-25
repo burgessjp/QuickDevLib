@@ -26,7 +26,7 @@ public class SimpleListFragment extends AbsListFragment<NewsItem> {
     @NonNull
     private List<NewsItem> getMockData() {
         List<NewsItem> list = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             NewsItem item = new NewsItem();
             item.setTitle("title:" + i);
             item.setContent("content:" + i);

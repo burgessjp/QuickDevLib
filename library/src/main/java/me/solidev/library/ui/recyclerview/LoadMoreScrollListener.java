@@ -2,6 +2,7 @@ package me.solidev.library.ui.recyclerview;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by _SOLID
@@ -15,14 +16,30 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
 
     private int previousTotal;
     private boolean isLoading = true;
+    private LinearLayoutManager lm;
+    private StaggeredGridLayoutManager sm;
+    private int[] lastPositions;
+    private int totalItemCount;
+    private int lastVisibleItemPosition;
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
-        LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
+        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager)
+            lm = (LinearLayoutManager) recyclerView.getLayoutManager();
+        else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+            sm = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+            lastPositions = sm.findLastVisibleItemPositions(null);
+        }
+
         int visibleItemCount = recyclerView.getChildCount();
-        int totalItemCount = lm.getItemCount();
-        int lastVisibleItemPosition = lm.findLastVisibleItemPosition();
+        if (lm != null) {
+            totalItemCount = lm.getItemCount();
+            lastVisibleItemPosition = lm.findLastVisibleItemPosition();
+        } else if (sm != null) {
+            totalItemCount = sm.getItemCount();
+            lastVisibleItemPosition = lastPositions[0];
+        }
 
         if (isLoading) {
             if (totalItemCount > previousTotal) {//加载更多结束

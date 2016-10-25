@@ -16,6 +16,7 @@ import java.util.List;
 
 import me.solidev.library.R;
 import me.solidev.library.imageloader.ImageLoader;
+import me.solidev.library.ui.widget.indicator.CircleIndicator;
 
 /**
  * Created by _SOLID
@@ -28,9 +29,11 @@ public class BannerView extends FrameLayout {
     public static final int SWITCH_PAGE_DURATION = 5 * 1000;
     private ViewPager mViewPager;
     private TextView mTvTitle;
+    private CircleIndicator mIndicator;
     private List<? extends BannerItem> mBannerList;
     private EDog mSwitchPageEDog;
     private boolean mAutoSwitchPage;
+
 
     public BannerView(Context context) {
         this(context, null);
@@ -46,6 +49,7 @@ public class BannerView extends FrameLayout {
         mAutoSwitchPage = true;
         mSwitchPageEDog = new EDog();
         mBannerList = new ArrayList<>();
+        mIndicator = (CircleIndicator) findViewById(R.id.indicator);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -80,6 +84,7 @@ public class BannerView extends FrameLayout {
         mBannerList = bannerList;
         mAdapter.notifyDataSetChanged();
         onPageSelected(mViewPager.getCurrentItem());
+        mIndicator.setViewPager(mViewPager);
         if (bannerList.size() > 1)
             startSwitchPage();
     }

@@ -3,7 +3,6 @@ package me.solidev.library.ui.fragment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -208,9 +207,6 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
         return "无数据";
     }
 
-    protected View getNoMoreView() {
-        return LayoutInflater.from(getContext()).inflate(R.layout.lib_layout_footer_view, mStatusViewLayout, false);
-    }
     //endregion
 
     //region 数据加载状态的处理

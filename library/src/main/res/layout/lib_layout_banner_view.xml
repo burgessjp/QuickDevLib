@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,7 +15,8 @@
         android:layout_alignParentBottom="true"
         android:background="#81000000"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_title"
@@ -28,4 +30,18 @@
             android:textColor="#ffffff"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <me.solidev.library.ui.widget.indicator.CircleIndicator xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        app:ci_background="@android:color/white"
+        app:ci_gravity="right"
+        app:ci_margin="4dp"
+        app:ci_mode="solo"
+        app:ci_radius="3dp"
+        app:ci_selected_background="@color/colorPrimary" />
 </RelativeLayout>

@@ -98,6 +98,9 @@ public class CircleIndicator extends View {
 
     public void setViewPager(final ViewPager viewPager) {
         this.viewPager = viewPager;
+        tabItems.clear();
+        movingItem = null;
+
         createTabItems();
         createMovingItem();
         setUpListener();

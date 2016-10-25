@@ -22,7 +22,7 @@ public class BannerController {
 
     public BannerController(Context context) {
         mContext = context;
-        mBannerHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
+        mBannerHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, context.getResources().getDisplayMetrics());
         mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mBannerHeight);
         mBannerView = new BannerView(context);
         mBannerView.setLayoutParams(mLayoutParams);

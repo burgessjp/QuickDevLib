@@ -42,6 +42,6 @@ public class StaggeredListFragment extends AbsListFragment<StaggeredImageItem> {
     @NonNull
     @Override
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        return new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
     }
 }
