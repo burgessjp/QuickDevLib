@@ -21,8 +21,7 @@ import me.solidev.library.ui.widget.banner.BannerController;
 import me.solidev.library.ui.widget.banner.BannerItem;
 import me.solidev.library.utils.FileUtil;
 import me.solidev.library.utils.json.JsonConvert;
-import me.solidev.quickdevlib.ChannelView;
-import me.solidev.quickdevlib.entity.Channel;
+import me.solidev.quickdevlib.entity.AppBannerItem;
 import me.solidev.quickdevlib.entity.news_type.DefaultNewsItem;
 import me.solidev.quickdevlib.entity.NewsItem;
 import me.solidev.quickdevlib.entity.news_type.SubjectNewsItem;
@@ -38,16 +37,12 @@ import rx.Subscriber;
  */
 
 public class HeaderListFragment extends AbsListFragment<NewsItem> {
-
-    private ChannelView mChannelController;
-
     private BannerController mBannerController;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mChannelController = new ChannelView(getContext());
         mBannerController = new BannerController(getContext());
     }
 
@@ -91,27 +86,21 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
                     public void onNext(String newsString) {
                         Random r = new Random();
                         if (pageIndex == r.nextInt(4))
-                            newsString = "1";
+                            newsString = "1";//模拟数据出错
                         List<NewsItem> items;
-                        List<Channel> channels;
                         try {
                             JSONObject jsonObject = new JSONObject(newsString);
+                            if (pageIndex == getInitPageIndex()) {//添加header
+                                JsonConvert<List<AppBannerItem>> convertAppBannerItem = new JsonConvert<List<AppBannerItem>>() {
+                                };
+                                mBannerController.setBannerList(convertAppBannerItem.parseData(jsonObject.getString("banners")));
+                                addHeaderView(mBannerController.getView());
+                            }
+
                             JsonConvert<List<NewsItem>> convertNewsItem = new JsonConvert<List<NewsItem>>() {
                             };
-                            JsonConvert<List<Channel>> convertChannel = new JsonConvert<List<Channel>>() {
-                            };
                             items = convertNewsItem.parseData(jsonObject.getString("datas"));
-                            channels = convertChannel.parseData(jsonObject.getString("channels"));
-
-
-                            if (pageIndex==getInitPageIndex()&&channels != null && channels.size() != 0) {//添加channel header
-                                mBannerController.setBannerList(getBanners());
-                                addHeaderView(mBannerController.getView());
-                                addHeaderView(mChannelController.setChannelList(channels));
-
-                            }
                             onDataSuccessReceived(pageIndex, items);
-
 
                         } catch (JSONException e) {
                             onError(e);
@@ -125,7 +114,7 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
 
 
     @Override
-    protected MultiTypeAdapter getAdapter() {
+    protected MultiTypeAdapter getAdapter() {//当有多个itemType的时候则需重写此方法
         return new MultiTypeAdapter(getItems()) {
             @NonNull
             @Override
@@ -144,25 +133,4 @@ public class HeaderListFragment extends AbsListFragment<NewsItem> {
             }
         };
     }
-
-    private List<BannerItem> getBanners() {
-        List<BannerItem> items = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            final int n = i;
-            items.add(new BannerItem() {
-                @Override
-                public String getImageUrl() {
-                    return "http://upload-images.jianshu.io/upload_images/1818301-888278c58f0dbe20.jpg";
-                }
-
-                @Override
-                public String getTitle() {
-                    return "title" + n;
-                }
-            });
-        }
-        return items;
-    }
-
-
 }

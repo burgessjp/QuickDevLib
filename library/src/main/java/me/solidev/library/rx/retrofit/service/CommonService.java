@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by _SOLID
  * Date:2016/7/27
  * Time:14:53
- * Desc:用于直接使用完全url的情况
+ * Desc:用于直接使用完全url的情况(自定义的Service可直接继承)
  */
 public interface CommonService {
     String BASE_URL = "http://www.example.com/";//可以随便写，但是必须有

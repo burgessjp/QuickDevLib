@@ -3,6 +3,7 @@ package me.solidev.library.rx.retrofit.subscriber;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,6 +19,7 @@ import rx.Subscriber;
  * Created by _SOLID
  * Date:2016/8/1
  * Time:16:40
+ * Desc:download file
  */
 public abstract class DownLoadSubscribe extends Subscriber<ResponseBody> {
 
@@ -26,12 +28,15 @@ public abstract class DownLoadSubscribe extends Subscriber<ResponseBody> {
     private File mFile;
 
     public DownLoadSubscribe(@NonNull String fileName) {
-        mSaveFilePath = BaseApp.getInstance().getCacheDir().getAbsolutePath();
-        mFile = new File(mSaveFilePath + File.separator + fileName);
+        this(null, fileName);
     }
 
     public DownLoadSubscribe(@NonNull String filePath, @NonNull String fileName) {
-        mSaveFilePath = filePath;
+        if (TextUtils.isEmpty(filePath)) {
+            mSaveFilePath = BaseApp.getInstance().getCacheDir().getAbsolutePath();
+        } else {
+            mSaveFilePath = filePath;
+        }
         mFile = new File(mSaveFilePath + File.separator + fileName);
     }
 

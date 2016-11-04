@@ -28,7 +28,6 @@ public class HttpUtil {
 
     private HttpUtil() {
         mCommonService = ServiceFactory.getInstance().createService(CommonService.class);
-
     }
 
     public static HttpUtil getInstance() {

@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -22,7 +23,7 @@ import me.solidev.library.ui.widget.indicator.CircleIndicator;
  * Created by _SOLID
  * Date:2016/10/10
  * Time:13:46
- * Desc:Banner图集
+ * Desc:Banner
  */
 
 public class BannerView extends FrameLayout {
@@ -69,6 +70,20 @@ public class BannerView extends FrameLayout {
             }
         });
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        cancelSwitchPage();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        startSwitchPage();
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     private void onPageSelected(int position) {

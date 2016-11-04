@@ -66,53 +66,49 @@ public class DateUtil {
         return mDate;
     }
 
-
-    public static String friendlyTime(Date date) {
-        return friendlyTime(formatDateTime(date));
+    public static String getFriendlyTime(String dateStr) {
+        return getFriendlyTime(parseDate(dateStr));
     }
 
-    public static String friendlyTime(String date) {
-        Date time = parseDateTime(date);
-        if (time == null) {
-            return "Unknown";
-        }
-        String fTime = "";
-        Calendar cal = Calendar.getInstance();
+    /**
+     * 转换日期到指定格式方便查看的描述说明
+     *
+     * @return 几秒前，几分钟前，几小时前，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
+     */
+    public static String getFriendlyTime(Date date) {
+        String showStr = "";
+        long yearSeconds = 31536000L;//365 * 24 * 60 * 60;
+        long monthSeconds = 2592000L;//30 * 24 * 60 * 60;
+        long daySeconds = 86400L;//24 * 60 * 60;
+        long hourSeconds = 3600L;//60 * 60;
+        long minuteSeconds = 60L;
 
-        // 判断是否是同一天
-        String curDate = formatDate.format(cal.getTime());
-        String paramDate = formatDate.format(time);
-        if (curDate.equals(paramDate)) {
-            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-            if (hour == 0)
-                fTime = Math.max(
-                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)
-                        + "分钟前";
-            else
-                fTime = hour + "小时前";
-            return fTime;
+        long time = (System.currentTimeMillis() - date.getTime()) / 1000;
+        if (time <= 50) {
+            showStr = "刚刚";
+            return showStr;
         }
-
-        long lt = time.getTime() / 86400000;
-        long ct = cal.getTimeInMillis() / 86400000;
-        int days = (int) (ct - lt);
-        if (days == 0) {
-            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-            if (hour == 0)
-                fTime = Math.max(
-                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)
-                        + "分钟前";
-            else
-                fTime = hour + "小时前";
-        } else if (days == 1) {
-            fTime = "昨天";
-        } else if (days == 2) {
-            fTime = "前天";
-        } else if (days > 2 && days <= 10) {
-            fTime = days + "天前";
-        } else if (days > 10) {
-            fTime = formatDate.format(time);
+        if (time / yearSeconds > 0) {
+            int year = (int) (time / yearSeconds);
+            if (year > 10)
+                showStr = "很久以前";
+            else {
+                showStr = year + "年前";
+            }
+        } else if (time / monthSeconds > 0) {
+            showStr = time / monthSeconds + "个月前";
+        } else if (time / daySeconds > 7) {
+            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd", Locale.getDefault());
+            showStr = formatter.format(date);
+        } else if (time / daySeconds > 0) {
+            showStr = time / daySeconds + "天前";
+        } else if (time / hourSeconds > 0) {
+            showStr = time / hourSeconds + "小时前";
+        } else if (time / minuteSeconds > 0) {
+            showStr = time / minuteSeconds + "分钟前";
+        } else if (time > 0) {
+            showStr = time + "秒前";
         }
-        return fTime;
+        return showStr;
     }
 }

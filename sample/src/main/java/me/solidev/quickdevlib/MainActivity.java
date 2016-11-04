@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +74,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void setUpData() {
-
     }
 
     class DemoPagerAdapter extends FragmentStatePagerAdapter {

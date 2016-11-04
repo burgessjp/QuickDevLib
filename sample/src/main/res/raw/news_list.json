@@ -1,46 +1,20 @@
 {
-  "channels": [
+  "pageInfo": {
+    "pageIndex": 1,
+    "totalPage": 1
+  },
+  "banners": [
     {
-      "clickType": 21,
-      "channelId": 24137,
-      "channelTitle": "频道1",
-      "channelIcon": "http://g.nxnews.net/zb/images/P020160825394147559685.png",
-      "channelUrl": ""
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/54/54560411605a67d.jpg"
     },
     {
-      "clickType": 22,
-      "channelId": 24138,
-      "channelTitle": "频道2",
-      "channelIcon": "http://g.nxnews.net/zw/images/P020160825394278758084.png",
-      "channelUrl": ""
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/75/41561a71adafd4a.jpg"
     },
     {
-      "clickType": 23,
-      "channelId": 24139,
-      "channelTitle": "频道3",
-      "channelIcon": "http://g.nxnews.net/xx/images/P020160825394445080473.png",
-      "channelUrl": ""
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/88/75/cdc49f31dbda8b9eac3b481d04542cce.jpg"
     },
     {
-      "clickType": 23,
-      "channelId": 24140,
-      "channelTitle": "频道4",
-      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
-      "channelUrl": ""
-    },
-    {
-      "clickType": 23,
-      "channelId": 24140,
-      "channelTitle": "频道5",
-      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
-      "channelUrl": ""
-    },
-    {
-      "clickType": 23,
-      "channelId": 24140,
-      "channelTitle": "频道6",
-      "channelIcon": "http://g.nxnews.net/fw/images/P020160825394554503936.png",
-      "channelUrl": ""
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/40/75561771294c746.jpg"
     }
   ],
   "datas": [
@@ -52,7 +26,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/headerThree/201606/P020160625345993521010.jpg"
+        "http://a3.topitme.com/e/c8/17/1109387711eb917c8em.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -65,14 +39,14 @@
       "date": "2016-06-25 09:31:29"
     },
     {
-      "channelId": 12,
+      "channelId": 123,
       "docId": 123,
-      "docType": 2,
+      "docType": 1,
       "clickType": 1,
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+        "http://a3.topitme.com/e/c8/17/1109387711eb917c8em.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -87,12 +61,12 @@
     {
       "channelId": 123,
       "docId": 123,
-      "docType": 3,
+      "docType": 1,
       "clickType": 1,
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+        "http://a3.topitme.com/5/20/7c/11100140567197c205m.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -113,48 +87,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
-      ],
-      "source": "",
-      "sponsor": {
-        "nickname": "",
-        "avatar": ""
-      },
-      "url": "http://cbgc.scol.com.cn/zt/qzgcdzn/",
-      "media": "",
-      "imagesUrl": [],
-      "date": "2016-06-25 09:41:02"
-    },
-    {
-      "channelId": 123,
-      "docId": 123,
-      "docType": 1,
-      "clickType": 1,
-      "title": "这是新闻标题",
-      "content": "这是新闻内容",
-      "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
-      ],
-      "source": "",
-      "sponsor": {
-        "nickname": "",
-        "avatar": ""
-      },
-      "url": "http://www.cankaoxiaoxi.com/roll10/20160625/1206509.shtml",
-      "plays_num": 1232,
-      "media": "http://219.151.34.69/masvod/public/2013/08/21/20130821_140a1681217_r1_300k.mp4",
-      "imagesUrl": [],
-      "date": "2016-06-25 09:41:02"
-    },
-    {
-      "channelId": 123,
-      "docId": 123,
-      "docType": 1,
-      "clickType": 1,
-      "title": "这是新闻标题",
-      "content": "这是新闻内容",
-      "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+        "http://a3.topitme.com/e/c8/17/1109387711eb917c8em.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -174,7 +107,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+        "http://a3.topitme.com/5/20/7c/11100140567197c205m.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -215,7 +148,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+        "http://bpic.588ku.com/back_pic/00/01/77/90560950e0cccac.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -235,7 +168,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+        "http://a3.topitme.com/5/20/7c/11100140567197c205m.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -256,7 +189,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+        "http://a3.topitme.com/e/c8/17/1109387711eb917c8em.jpg"
       ],
       "source": "人民日报",
       "sponsor": {
@@ -276,7 +209,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+        "http://a3.topitme.com/5/20/7c/11100140567197c205m.jpg"
       ],
       "source": "北京晨报",
       "sponsor": {
@@ -297,7 +230,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://cbgc.scol.com.cn/zt/qzgcdzn/images/P020160624414915754599.jpg"
+        "http://a3.topitme.com/e/c8/17/1109387711eb917c8em.jpg"
       ],
       "source": "",
       "sponsor": {
@@ -317,7 +250,7 @@
       "title": "这是新闻标题",
       "content": "这是新闻内容",
       "images": [
-        "http://upload.cankaoxiaoxi.com/2016/0625/1466818864345.jpg"
+        "http://a3.topitme.com/5/20/7c/11100140567197c205m.jpg"
       ],
       "source": "",
       "sponsor": {
