@@ -17,7 +17,7 @@ import me.solidev.quickdevlib.entity.image_type.StaggeredImageItem;
  * Desc:瀑布列表实现
  */
 
-public class StaggeredListFragment extends AbsListFragment<StaggeredImageItem> {
+public class StaggeredListFragment extends AbsListFragment {
     @Override
     public void loadData(int pageIndex) {
         if (pageIndex > 3) {

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.R;
-import me.solidev.library.imageloader.ImageLoader;
+import me.solidev.library.module.imageloader.ImageLoader;
 import me.solidev.library.ui.widget.indicator.CircleIndicator;
 
 /**

@@ -11,7 +11,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import me.solidev.library.R;
-import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import me.solidev.library.utils.ConvertUtils;
 
 /**
@@ -38,10 +37,7 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
         int itemPosition = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         int spanCount = getSpanCount(parent);
         int childCount = parent.getAdapter().getItemCount();
-        if (parent.getAdapter() instanceof HeaderAndFooterWrapper) {
-            HeaderAndFooterWrapper wrapper = (HeaderAndFooterWrapper) parent.getAdapter();
-            childCount -= (wrapper.getFootersCount() + wrapper.getHeadersCount());
-        }
+
         if (isLastRow(parent, itemPosition, spanCount, childCount))// 如果是最后一行，则不需要绘制底部
         {
             outRect.set(0, 0, mDividerHeight, 0);

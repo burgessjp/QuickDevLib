@@ -37,8 +37,6 @@ public class StatusViewLayout extends FrameLayout {
     private FrameLayout.LayoutParams mLayoutParams;
     private OnClickListener mOnRetryListener;
 
-    private LVCircularZoom mLoadingProgressView;
-
 
     public StatusViewLayout(Context context) {
         this(context, null);
@@ -66,7 +64,6 @@ public class StatusViewLayout extends FrameLayout {
         mLoadingView = LayoutInflater.from(getContext()).inflate(mLoadingViewResId, null);
         mErrorView = LayoutInflater.from(getContext()).inflate(mErrorViewResId, null);
         mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyViewResId, null);
-        mLoadingProgressView = (LVCircularZoom) mLoadingView.findViewById(R.id.lv_loading_view);
 
         lib_tv_empty_msg = (TextView) mEmptyView.findViewById(R.id.lib_tv_empty_msg);
         lib_tv_error = (TextView) mErrorView.findViewById(R.id.lib_tv_error);
@@ -97,7 +94,6 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mLoadingView.setVisibility(View.VISIBLE);
-        mLoadingProgressView.startAnim();
 
     }
 
@@ -111,7 +107,6 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mErrorView.setVisibility(View.VISIBLE);
-        mLoadingProgressView.stopAnim();
     }
 
     public void showEmpty(String msg) {
@@ -124,7 +119,6 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         mEmptyView.setVisibility(View.VISIBLE);
-        mLoadingProgressView.stopAnim();
     }
 
 
@@ -133,7 +127,6 @@ public class StatusViewLayout extends FrameLayout {
             getChildAt(i).setVisibility(View.GONE);
         }
         getChildAt(getChildCount() - 1).setVisibility(View.VISIBLE);
-        mLoadingProgressView.stopAnim();
     }
 
 

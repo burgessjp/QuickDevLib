@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <me.solidev.library.ui.widget.pulltorefresh.PullToRefresh
-        android:id="@+id/ptr"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,6 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="LinearLayoutManager" />
-    </me.solidev.library.ui.widget.pulltorefresh.PullToRefresh>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </me.solidev.library.ui.widget.StatusViewLayout>

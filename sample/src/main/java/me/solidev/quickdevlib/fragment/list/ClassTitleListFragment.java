@@ -22,7 +22,7 @@ import rx.Subscriber;
  * Desc:分类列表实现
  */
 
-public class ClassTitleListFragment extends AbsListFragment<NewsItem> {
+public class ClassTitleListFragment extends AbsListFragment{
 
 
     @Override

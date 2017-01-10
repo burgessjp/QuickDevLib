@@ -1,4 +1,4 @@
-package me.solidev.library.imageloader;
+package me.solidev.library.module.imageloader;
 
 import android.widget.ImageView;
 

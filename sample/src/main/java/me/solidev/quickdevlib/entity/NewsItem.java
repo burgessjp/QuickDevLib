@@ -2,7 +2,6 @@ package me.solidev.quickdevlib.entity;
 
 import java.util.List;
 
-import me.solidev.library.ui.adapter.Item;
 import me.solidev.library.ui.recyclerview.ClassTitleItem;
 
 /**

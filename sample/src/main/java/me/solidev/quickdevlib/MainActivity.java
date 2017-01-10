@@ -46,7 +46,6 @@ public class MainActivity extends BaseActivity {
         mActionBar.setElevation(0);
         mTabLayout = $(R.id.tab_layout);
         mViewPager = $(R.id.viewpager);
-
         mDemoTitles = new ArrayList<>();
         mDemoTitles.add("简单列表");
         mDemoTitles.add("带有Header");
@@ -61,7 +60,22 @@ public class MainActivity extends BaseActivity {
         }
         mViewPager.setAdapter(new DemoPagerAdapter(getSupportFragmentManager(), mDemoTitles));
         mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
 
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

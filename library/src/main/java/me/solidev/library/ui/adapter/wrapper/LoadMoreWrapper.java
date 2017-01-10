@@ -25,6 +25,12 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * Time:9:30
  * Desc:load more wrap adapter for recyclerview
  */
+/**
+ * Created by _SOLID
+ * Date:2016/9/29
+ * Time:9:30
+ * Desc:load more wrap adapter for recyclerview
+ */
 public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final int ITEM_TYPE_LOAD_FAILED_VIEW = Integer.MAX_VALUE - 1;
@@ -158,7 +164,8 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
             return;
         }
-        mInnerAdapter.onBindViewHolder(holder, position);
+        if (!isFooterType(holder.getItemViewType()))
+            mInnerAdapter.onBindViewHolder(holder, position);
     }
 
     @Override
@@ -200,6 +207,13 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return mInnerAdapter.getItemCount() + (isHaveStatesView ? 1 : 0);
     }
 
+    public boolean isFooterType(int type) {
+
+        return type == ITEM_TYPE_NO_VIEW ||
+                type == ITEM_TYPE_LOAD_FAILED_VIEW ||
+                type == ITEM_TYPE_NO_MORE_VIEW ||
+                type == ITEM_TYPE_LOAD_MORE_VIEW;
+    }
     //region 加载监听
 
     public interface OnLoadListener {

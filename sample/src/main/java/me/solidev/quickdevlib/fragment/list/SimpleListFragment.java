@@ -15,7 +15,7 @@ import me.solidev.quickdevlib.entity.NewsItem;
  * Desc:最简单的一种列表实现
  */
 
-public class SimpleListFragment extends AbsListFragment<NewsItem> {
+public class SimpleListFragment extends AbsListFragment {
     @Override
     public void loadData(int pageIndex) {
 

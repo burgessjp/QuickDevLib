@@ -1,6 +1,4 @@
-package me.solidev.library.imageloader;
-
-import android.content.Context;
+package me.solidev.library.module.imageloader;
 
 /**
  * Created by _SOLID

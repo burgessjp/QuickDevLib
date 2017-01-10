@@ -1,16 +1,17 @@
 package me.solidev.quickdevlib.provider;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Random;
 
-import me.solidev.library.imageloader.ImageLoader;
-import me.solidev.library.ui.adapter.ItemViewProvider;
-import me.solidev.library.ui.adapter.ViewHolder;
-import me.solidev.library.utils.ConstUtils;
+import me.drakeet.multitype.ItemViewProvider;
+import me.solidev.library.module.imageloader.ImageLoader;
 import me.solidev.library.utils.ConvertUtils;
 import me.solidev.quickdevlib.R;
 import me.solidev.quickdevlib.entity.ImageItem;
@@ -22,21 +23,34 @@ import me.solidev.quickdevlib.entity.ImageItem;
  * Desc:
  */
 
-public class StaggeredImageItemViewProvider extends ItemViewProvider<ImageItem> {
+public class StaggeredImageItemViewProvider extends ItemViewProvider<ImageItem, StaggeredImageItemViewProvider.ViewHolder> {
+    @NonNull
     @Override
-    protected int getItemViewLayoutId() {
-        return R.layout.item_image;
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        View view = inflater.inflate(R.layout.item_image, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull ImageItem imageItem) {
-        holder.setText(R.id.tv_title, imageItem.getImageTitle());
+        holder.tv_title.setText(imageItem.getImageTitle());
         Random r = new Random();
-        int height = ConvertUtils.dp2px(holder.getContext(), 100 + r.nextInt(100));
-        ImageView iv_img = holder.getImageView(R.id.iv_img);
-        ViewGroup.LayoutParams layoutParams = iv_img.getLayoutParams();
+        int height = ConvertUtils.dp2px(holder.itemView.getContext(), 100 + r.nextInt(100));
+
+        ViewGroup.LayoutParams layoutParams = holder.iv_img.getLayoutParams();
         layoutParams.height = height;
-        iv_img.setLayoutParams(layoutParams);
-        ImageLoader.displayImage(holder.getImageView(R.id.iv_img), imageItem.getImageUrl());
+        holder.iv_img.setLayoutParams(layoutParams);
+        ImageLoader.displayImage(holder.iv_img, imageItem.getImageUrl());
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_title;
+        ImageView iv_img;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
+        }
     }
 }

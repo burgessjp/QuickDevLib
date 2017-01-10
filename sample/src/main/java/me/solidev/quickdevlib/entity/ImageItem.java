@@ -1,7 +1,5 @@
 package me.solidev.quickdevlib.entity;
 
-import me.solidev.library.ui.adapter.Item;
-
 /**
  * Created by _SOLID
  * Date:2016/10/8
@@ -9,7 +7,7 @@ import me.solidev.library.ui.adapter.Item;
  * Desc:
  */
 
-public class ImageItem implements Item {
+public class ImageItem {
     private String imageTitle;
     private String imageUrl;
 

@@ -1,7 +1,5 @@
 package me.solidev.library.ui.fragment;
 
-import me.solidev.library.ui.adapter.Item;
-
 /**
  * Created by _SOLID
  * Date:2016/9/30
@@ -9,7 +7,7 @@ import me.solidev.library.ui.adapter.Item;
  * Desc:数据保存接口
  */
 
-public interface DBSavable<E extends Item> {
+public interface DBSavable<E> {
 
     boolean isExist(E e);
 

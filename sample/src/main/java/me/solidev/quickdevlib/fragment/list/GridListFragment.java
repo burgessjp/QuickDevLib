@@ -21,7 +21,7 @@ import rx.Subscriber;
  * Desc:网格列表实现
  */
 
-public class GridListFragment extends AbsListFragment<GridImageItem> {
+public class GridListFragment extends AbsListFragment{
 
     @Override
     protected void customConfig() {

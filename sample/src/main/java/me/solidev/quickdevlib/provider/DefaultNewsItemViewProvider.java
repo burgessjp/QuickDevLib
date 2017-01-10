@@ -1,11 +1,16 @@
 package me.solidev.quickdevlib.provider;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import me.solidev.library.ui.adapter.ItemViewProvider;
+import me.drakeet.multitype.ItemViewProvider;
 import me.solidev.library.ui.adapter.ViewHolder;
-import me.solidev.library.imageloader.ImageLoader;
+import me.solidev.library.module.imageloader.ImageLoader;
 import me.solidev.library.utils.ToastUtil;
 import me.solidev.quickdevlib.R;
 import me.solidev.quickdevlib.entity.NewsItem;
@@ -17,20 +22,21 @@ import me.solidev.quickdevlib.entity.NewsItem;
  * Time:13:11
  */
 
-public class DefaultNewsItemViewProvider extends ItemViewProvider<NewsItem> {
+public class DefaultNewsItemViewProvider extends ItemViewProvider<NewsItem, DefaultNewsItemViewProvider.ViewHolder> {
 
+    @NonNull
     @Override
-    protected int getItemViewLayoutId() {
-        return R.layout.item_news_default;
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        View view = inflater.inflate(R.layout.item_news_default, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull final NewsItem item) {
-        holder.setText(R.id.tv_title, item.getTitle());
-        holder.setText(R.id.tv_content, item.getContent());
-        holder.setText(R.id.tv_date, item.getDate());
-
-        ImageLoader.displayImage(holder.getImageView(R.id.iv_img), item.getImages().get(0));
+        holder.tv_title.setText(item.getTitle());
+        holder.tv_content.setText(item.getContent());
+        holder.tv_date.setText(item.getDate());
+        ImageLoader.displayImage(holder.iv_img, item.getImages().get(0));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +44,21 @@ public class DefaultNewsItemViewProvider extends ItemViewProvider<NewsItem> {
                 ToastUtil.getInstance().showShortToast("DefaultNewsItem:" + item.getTitle());
             }
         });
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_title;
+        TextView tv_content;
+        TextView tv_date;
+        ImageView iv_img;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            tv_content = (TextView) itemView.findViewById(R.id.tv_content);
+            tv_date = (TextView) itemView.findViewById(R.id.tv_date);
+            iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
+        }
     }
 
 }

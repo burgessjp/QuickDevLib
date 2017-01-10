@@ -1,6 +1,7 @@
 package me.solidev.library.ui.fragment;
 
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,13 +9,10 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.drakeet.multitype.MultiTypeAdapter;
 import me.solidev.library.R;
-import me.solidev.library.ui.adapter.Item;
-import me.solidev.library.ui.adapter.MultiTypeAdapter;
-import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import me.solidev.library.ui.adapter.wrapper.LoadMoreWrapper;
 import me.solidev.library.ui.widget.StatusViewLayout;
-import me.solidev.library.ui.widget.pulltorefresh.PullToRefresh;
 import me.solidev.library.utils.ToastUtil;
 
 /**
@@ -24,16 +22,15 @@ import me.solidev.library.utils.ToastUtil;
  * Desc:列表基类，默认线性布局
  */
 
-public abstract class AbsListFragment<E extends Item> extends BaseFragment implements IList {
+public abstract class AbsListFragment extends BaseFragment implements IList {
 
     private StatusViewLayout mStatusViewLayout;
-    private PullToRefresh mPullToRefresh;
+    private SwipeRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
 
-    private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
     private LoadMoreWrapper mLoadMoreWrapper;
     private int mCurrentPageIndex;
-    private List<E> mItems;
+    private List mItems;
     private boolean mIsCanPullUp = false;
 
 
@@ -46,8 +43,9 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
     protected final void init() {
         mCurrentPageIndex = getInitPageIndex();
         mItems = new ArrayList<>();
-        mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(getAdapter());
-        mLoadMoreWrapper = new LoadMoreWrapper(getContext(), mHeaderAndFooterWrapper);
+        MultiTypeAdapter adapter = getAdapter();
+        adapter.applyGlobalMultiTypePool();
+        mLoadMoreWrapper = new LoadMoreWrapper(getContext(), adapter);
         mLoadMoreWrapper.setOnLoadListener(new LoadMoreWrapper.OnLoadListener() {
             @Override
             public void onRetry() {
@@ -64,22 +62,16 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
     @Override
     protected final void setUpView() {
         mStatusViewLayout = $(R.id.status_view_layout);
-        mPullToRefresh = $(R.id.ptr);
-        mPullToRefresh.setPullUpEnable(false);
+        mRefreshLayout = $(R.id.refresh_layout);
         disEnablePullUp();
         mRecyclerView = $(R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mLoadMoreWrapper);
         customConfig();
-        mPullToRefresh.setListener(new PullToRefresh.OnRefreshListener() {
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
-            }
-
-            @Override
-            public void onLoadMore() {
-                loadMore();
             }
         });
 
@@ -125,7 +117,7 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
      * @param pageIndex 当前请求的页数
      * @param items     返回的数据
      */
-    protected final void onDataSuccessReceived(int pageIndex, List<E> items) {
+    protected final void onDataSuccessReceived(int pageIndex, List items) {
         showContent();
         if (pageIndex == getInitPageIndex() && items.size() <= 0) {//无数据
             showEmpty(getEmptyMsg());
@@ -136,7 +128,6 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
             mItems.addAll(items);
         } else {//没有更多数据了
             mCurrentPageIndex--;
-            mPullToRefresh.setPullUpEnable(false);
             mLoadMoreWrapper.showLoadComplete();
         }
 
@@ -150,7 +141,7 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
      *
      * @return 当前列表数据
      */
-    protected final List<E> getItems() {
+    protected final List getItems() {
         return mItems;
     }
 
@@ -169,18 +160,8 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
      */
     protected final void disEnablePullUp() {
         mIsCanPullUp = false;
-        mPullToRefresh.setPullUpEnable(false);
     }
 
-
-    /**
-     * 添加headerView，建议在onDataSuccessReceived方法之前调用
-     *
-     * @param view headView
-     */
-    protected final void addHeaderView(View view) {
-        mHeaderAndFooterWrapper.addHeaderView(view);
-    }
     //endregion
 
     //region 根据具体的情况可选择性实现下面方法
@@ -218,13 +199,13 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
             mLoadMoreWrapper.showLoadError();
             ToastUtil.getInstance().showShortToast(e.getMessage());
         }
-        mPullToRefresh.onFinishLoading();
+        mRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showEmpty(String msg) {
         mStatusViewLayout.showEmpty(msg);
-        mPullToRefresh.onFinishLoading();
+        mRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -235,7 +216,7 @@ public abstract class AbsListFragment<E extends Item> extends BaseFragment imple
     @Override
     public void showContent() {
         mStatusViewLayout.showContent();
-        mPullToRefresh.onFinishLoading();
+        mRefreshLayout.setRefreshing(false);
     }
     //endregion
 }

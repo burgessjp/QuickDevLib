@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import me.solidev.library.ui.adapter.wrapper.HeaderAndFooterWrapper;
 
 /**
  * Created by _SOLID
@@ -23,9 +22,6 @@ public class ClassTitleDecoration2 extends ClassTitleDecoration {
     protected boolean isDataUnValid(int position, RecyclerView recyclerView) {
         boolean result = super.isDataUnValid(position, recyclerView);
         int headCount = 0;
-        if (recyclerView.getAdapter() instanceof HeaderAndFooterWrapper) {
-            headCount = ((HeaderAndFooterWrapper) recyclerView.getAdapter()).getHeadersCount();
-        }
         if (headCount == 0) {
             return result;
         } else {
