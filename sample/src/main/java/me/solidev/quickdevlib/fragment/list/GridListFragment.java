@@ -1,5 +1,6 @@
 package me.solidev.quickdevlib.fragment.list;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.rx.TransformUtils;
-import me.solidev.library.ui.fragment.AbsListFragment;
-import me.solidev.library.ui.recyclerview.GridDecoration;
+import me.solidev.library.module.list.AbsListFragment;
+import me.solidev.library.ui.recyclerview.GridDividerItemDecoration;
+import me.solidev.library.ui.recyclerview.GridDividerItemDecorationBug;
+import me.solidev.library.utils.ConvertUtils;
 import me.solidev.quickdevlib.entity.image_type.GridImageItem;
 import rx.Observable;
 import rx.Subscriber;
@@ -21,11 +24,13 @@ import rx.Subscriber;
  * Desc:网格列表实现
  */
 
-public class GridListFragment extends AbsListFragment{
+public class GridListFragment extends AbsListFragment {
 
     @Override
     protected void customConfig() {
-        addItemDecoration(new GridDecoration(getContext()));
+        int height = ConvertUtils.dp2px(getContext(), 20);
+        int color = Color.parseColor("#4285F4");
+        addItemDecoration(new GridDividerItemDecoration(height, color));
     }
 
     @Override

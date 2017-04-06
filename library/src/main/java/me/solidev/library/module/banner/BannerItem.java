@@ -1,4 +1,4 @@
-package me.solidev.library.ui.widget.banner;
+package me.solidev.library.module.banner;
 
 /**
  * Created by _SOLID

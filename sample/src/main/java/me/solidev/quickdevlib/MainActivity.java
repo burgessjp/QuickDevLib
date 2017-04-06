@@ -1,21 +1,16 @@
 package me.solidev.quickdevlib;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.view.MenuItem;
 
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.ui.activity.BaseActivity;
-import me.solidev.library.utils.ToastUtil;
 import me.solidev.quickdevlib.fragment.GridPagerFragment;
 import me.solidev.quickdevlib.fragment.list.ClassTitleListFragment;
 import me.solidev.quickdevlib.fragment.list.GridListFragment;
@@ -30,7 +25,6 @@ public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private ArrayList<String> mDemoTitles;
-    private BottomNavigationView mNavigationView;
 
     @Override
     protected int setLayoutResourceID() {
@@ -40,7 +34,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void setUpView() {
 
-        mNavigationView = $(R.id.navigation);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setElevation(0);
@@ -74,13 +67,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-        mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                ToastUtil.getInstance().showShortToast(item.getTitle() + "");
-                return false;
             }
         });
 

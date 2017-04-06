@@ -1,6 +1,5 @@
 package me.solidev.quickdevlib.fragment.list;
 
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.solidev.library.rx.TransformUtils;
-import me.solidev.library.ui.fragment.AbsListFragment;
+import me.solidev.library.module.list.AbsListFragment;
 import me.solidev.library.ui.recyclerview.ClassTitleDecoration;
 import me.solidev.library.ui.recyclerview.LinearDecoration;
 import me.solidev.quickdevlib.entity.NewsItem;

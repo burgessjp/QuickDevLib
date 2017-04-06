@@ -5,16 +5,20 @@
   },
   "banners": [
     {
-      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/54/54560411605a67d.jpg"
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/54/54560411605a67d.jpg",
+      "title": "标题1"
     },
     {
-      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/75/41561a71adafd4a.jpg"
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/75/41561a71adafd4a.jpg",
+      "title": "标题2"
     },
     {
-      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/88/75/cdc49f31dbda8b9eac3b481d04542cce.jpg"
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/01/88/75/cdc49f31dbda8b9eac3b481d04542cce.jpg",
+      "title": "标题3"
     },
     {
-      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/40/75561771294c746.jpg"
+      "imageUrl": "http://bpic.588ku.com/back_pic/00/02/40/75561771294c746.jpg",
+      "title": "标题4"
     }
   ],
   "datas": [

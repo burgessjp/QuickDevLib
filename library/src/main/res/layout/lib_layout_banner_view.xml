@@ -4,44 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
+    <me.solidev.library.module.banner.LoopViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:background="#81000000"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:background="@drawable/bg_banner_bottom">
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:ellipsize="end"
+            android:layout_centerInParent="true"
             android:maxLines="1"
+            android:text="文化立市"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <me.solidev.library.ui.widget.indicator.CircleIndicator xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        app:ci_background="@android:color/white"
-        app:ci_gravity="right"
-        app:ci_margin="4dp"
-        app:ci_mode="solo"
-        app:ci_radius="3dp"
-        app:ci_selected_background="@color/colorPrimary" />
+            android:textSize="16sp" />
+    </RelativeLayout>
 </RelativeLayout>

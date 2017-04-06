@@ -5,7 +5,7 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.BaseFragment;
+import me.solidev.library.module.list.BaseFragment;
 import me.solidev.library.ui.widget.gridpager.GridPagerItem;
 import me.solidev.library.ui.widget.gridpager.GridPagerView;
 import me.solidev.library.utils.ToastUtil;

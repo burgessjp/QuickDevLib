@@ -1,7 +1,9 @@
-package me.solidev.library.ui.widget.banner;
+package me.solidev.library.module.banner;
 
 import android.os.Handler;
 import android.provider.Settings;
+
+import java.lang.ref.WeakReference;
 
 import me.solidev.library.utils.Logger;
 
@@ -35,11 +37,11 @@ class EDog {
     private int duration;
     private long startTick;
     private boolean cancelled;
-    private Runnable r;
+    private WeakReference<Runnable> r;
     private WaitingThread waitingThread;
 
     void feed(Runnable r, int duration) {
-        this.r = r;
+        this.r = new WeakReference<>(r);
         this.duration = duration;
         this.startTick = System.currentTimeMillis();
         this.cancelled = false;
@@ -51,7 +53,7 @@ class EDog {
     }
 
     private void bark() {
-        handler.post(r);
+        handler.post(r.get());
     }
 
     void cancel() {

@@ -142,7 +142,7 @@ public class GridPagerView extends FrameLayout {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), mColumns);
             gridLayoutManager.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(gridLayoutManager);
-            //recyclerView.addItemDecoration(new GridDecoration(getContext()));
+            //recyclerView.addItemDecoration(new GridDividerItemDecoration(getContext()));
             recyclerView.setAdapter(new ItemAdapter(items));
 
             container.addView(recyclerView, new ViewGroup.LayoutParams(MATCH_PARENT, 200));

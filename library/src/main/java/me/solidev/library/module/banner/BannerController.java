@@ -1,4 +1,4 @@
-package me.solidev.library.ui.widget.banner;
+package me.solidev.library.module.banner;
 
 import android.content.Context;
 import android.util.TypedValue;
@@ -37,6 +37,7 @@ public class BannerController {
 
     public BannerController setBannerList(List<? extends BannerItem> bannerList) {
         mBannerView.setBannerList(bannerList);
+        mBannerView.startScroll();
         return this;
     }
 

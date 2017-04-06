@@ -2,6 +2,7 @@ package me.solidev.quickdevlib.provider;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class DefaultNewsItemViewProvider extends ItemViewProvider<NewsItem, Defa
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull final NewsItem item) {
+    protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull final NewsItem item) {
         holder.tv_title.setText(item.getTitle());
         holder.tv_content.setText(item.getContent());
         holder.tv_date.setText(item.getDate());
@@ -42,6 +43,7 @@ public class DefaultNewsItemViewProvider extends ItemViewProvider<NewsItem, Defa
             @Override
             public void onClick(View v) {
                 ToastUtil.getInstance().showShortToast("DefaultNewsItem:" + item.getTitle());
+                Log.e("zzz", "height:" + holder.itemView.getHeight());
             }
         });
     }

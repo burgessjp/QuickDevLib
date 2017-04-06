@@ -1,5 +1,7 @@
 package me.solidev.quickdevlib.entity;
 
+import me.solidev.library.module.banner.BannerItem;
+
 /**
  * Created by _SOLID
  * Date:2016/11/4
@@ -7,9 +9,10 @@ package me.solidev.quickdevlib.entity;
  * Desc:
  */
 
-public class AppBannerItem implements me.solidev.library.ui.widget.banner.BannerItem {
+public class AppBannerItem implements BannerItem {
 
     private String imageUrl;
+    private String title;
 
     @Override
     public String getImageUrl() {
@@ -18,10 +21,15 @@ public class AppBannerItem implements me.solidev.library.ui.widget.banner.Banner
 
     @Override
     public String getTitle() {
-        return null;
+        return title;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 }

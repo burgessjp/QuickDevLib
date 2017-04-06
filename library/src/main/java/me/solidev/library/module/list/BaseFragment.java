@@ -1,4 +1,4 @@
-package me.solidev.library.ui.fragment;
+package me.solidev.library.module.list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

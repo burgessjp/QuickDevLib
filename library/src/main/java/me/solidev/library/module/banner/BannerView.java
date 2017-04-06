@@ -1,8 +1,9 @@
-package me.solidev.library.ui.widget.banner;
+package me.solidev.library.module.banner;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,7 +18,6 @@ import java.util.List;
 
 import me.solidev.library.R;
 import me.solidev.library.module.imageloader.ImageLoader;
-import me.solidev.library.ui.widget.indicator.CircleIndicator;
 
 /**
  * Created by _SOLID
@@ -30,10 +30,9 @@ public class BannerView extends FrameLayout {
     public static final int SWITCH_PAGE_DURATION = 5 * 1000;
     private ViewPager mViewPager;
     private TextView mTvTitle;
-    private CircleIndicator mIndicator;
-    private List<? extends BannerItem> mBannerList;
-    private EDog mSwitchPageEDog;
-    private boolean mAutoSwitchPage;
+    private List<? extends BannerItem> mBannerList = new ArrayList<>();
+    private EDog mSwitchPageEDog = new EDog();
+    private boolean mAutoSwitchPage = true;
 
 
     public BannerView(Context context) {
@@ -47,12 +46,12 @@ public class BannerView extends FrameLayout {
     public BannerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.lib_layout_banner_view, this);
-        mAutoSwitchPage = true;
-        mSwitchPageEDog = new EDog();
-        mBannerList = new ArrayList<>();
-        mIndicator = (CircleIndicator) findViewById(R.id.indicator);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
+
+    }
+
+    private void setViewPager() {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -97,10 +96,13 @@ public class BannerView extends FrameLayout {
             throw new IllegalArgumentException("the bannerList cannot be null!");
         }
         mBannerList = bannerList;
-        mAdapter.notifyDataSetChanged();
+
+    }
+
+    public void startScroll() {
+        setViewPager();
         onPageSelected(mViewPager.getCurrentItem());
-        mIndicator.setViewPager(mViewPager);
-        if (bannerList.size() > 1)
+        if (mBannerList.size() > 1)
             startSwitchPage();
     }
 
@@ -148,7 +150,8 @@ public class BannerView extends FrameLayout {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mBannerList.get(position).getTitle();
+            String title = mBannerList.get(position).getTitle();
+            return TextUtils.isEmpty(title) ? "无标题" : title;
         }
 
         @Override

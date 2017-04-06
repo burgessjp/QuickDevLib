@@ -1,4 +1,4 @@
-package me.solidev.library.ui.fragment;
+package me.solidev.library.module.list;
 
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;

@@ -6,7 +6,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.BaseFragment;
+import me.solidev.library.module.list.BaseFragment;
 import me.solidev.library.ui.widget.subscribeview.AbsSubscribePopWindow;
 import me.solidev.quickdevlib.R;
 
@@ -19,7 +19,7 @@ import me.solidev.quickdevlib.R;
 
 public class SubscribeFragment extends BaseFragment {
 
-    private AbsSubscribePopWindow<MyChannel> pop;
+    private AbsSubscribePopWindow<MyChannel1> pop;
 
     @Override
     protected int setLayoutResourceID() {
@@ -44,11 +44,12 @@ public class SubscribeFragment extends BaseFragment {
 
     }
 
-    public List<MyChannel> getData() {
-        List<MyChannel> channels = new ArrayList<>();
+    public List<MyChannel1> getData() {
+        List<MyChannel1> channels = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            MyChannel channel = new MyChannel();
-            channel.setTitle("频道" + i);
+            MyChannel1 channel = new MyChannel1();
+            channel.setId("id" + i);
+            channel.setTitle("频道b" + i);
             if (i == 0) {
                 channel.setIsFix(1);
             }

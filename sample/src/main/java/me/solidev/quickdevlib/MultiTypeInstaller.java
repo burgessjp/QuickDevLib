@@ -1,9 +1,6 @@
 package me.solidev.quickdevlib;
 
-import java.util.ArrayList;
-
 import me.drakeet.multitype.GlobalMultiTypePool;
-import me.solidev.library.ui.widget.banner.BannerItem;
 import me.solidev.quickdevlib.entity.Banners;
 import me.solidev.quickdevlib.entity.NewsItem;
 import me.solidev.quickdevlib.entity.image_type.GridImageItem;

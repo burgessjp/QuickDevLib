@@ -2,6 +2,7 @@ package me.solidev.quickdevlib.provider;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,17 @@ public class GridImageItemViewProvider extends ItemViewProvider<ImageItem, GridI
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull ImageItem imageItem) {
+    protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull ImageItem imageItem) {
         holder.tv_title.setText(imageItem.getImageTitle());
         ImageLoader.displayImage(holder.iv_img, imageItem.getImageUrl());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.e("zzz","width:"+holder.itemView.getWidth());
+                Log.e("zzz","height:"+holder.itemView.getHeight());
+            }
+        });
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

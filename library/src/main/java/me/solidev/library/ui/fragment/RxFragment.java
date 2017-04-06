@@ -3,6 +3,7 @@ package me.solidev.library.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import me.solidev.library.module.list.BaseFragment;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.subjects.BehaviorSubject;

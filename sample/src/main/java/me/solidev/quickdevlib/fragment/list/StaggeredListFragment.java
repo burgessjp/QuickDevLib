@@ -7,7 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.solidev.library.ui.fragment.AbsListFragment;
+import me.solidev.library.module.list.AbsListFragment;
 import me.solidev.quickdevlib.entity.image_type.StaggeredImageItem;
 
 /**

@@ -25,7 +25,7 @@ import static android.R.id.list;
  * Date:2016/8/10
  * Time:10:26
  */
-public abstract class AbsSubscribePopWindow<E extends SubscribeItem> {
+public abstract class AbsSubscribePopWindow<E extends SubscribeItem> implements PopupWindow.OnDismissListener {
 
 
     private String mCategory = "default";
@@ -54,14 +54,7 @@ public abstract class AbsSubscribePopWindow<E extends SubscribeItem> {
         mSubscribeRecyclerView = (RecyclerView) popupView.findViewById(R.id.subscribe_recycler_view);
         initSubscribeRecyclerView();
 
-        mSubscribeWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                updateSubscribeInfo();
-                sortList();
-                RxBus.getInstance().post(new ChannelSubscribeEvent(ChannelSubscribeEvent.TYPE_ON_DISMISS));
-            }
-        });
+        mSubscribeWindow.setOnDismissListener(this);
 
     }
 
@@ -104,10 +97,10 @@ public abstract class AbsSubscribePopWindow<E extends SubscribeItem> {
         mSubscribeAdapter.setOnBackClickListener(new SubscribeAdapter.OnBackClickListener() {
             @Override
             public void onBackClick() {
-                mSubscribeWindow.dismiss();
                 updateSubscribeInfo();
                 sortList();
                 RxBus.getInstance().post(new ChannelSubscribeEvent(ChannelSubscribeEvent.TYPE_ON_BACK_CLICK));
+                mSubscribeWindow.dismiss();
             }
         });
     }
@@ -288,5 +281,12 @@ public abstract class AbsSubscribePopWindow<E extends SubscribeItem> {
         if (isShowing()) {
             mSubscribeWindow.dismiss();
         }
+    }
+
+    @Override
+    public void onDismiss() {
+        updateSubscribeInfo();
+        sortList();
+        RxBus.getInstance().post(new ChannelSubscribeEvent(ChannelSubscribeEvent.TYPE_ON_DISMISS));
     }
 }
